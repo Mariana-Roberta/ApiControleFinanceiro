@@ -1,0 +1,36 @@
+<div class="formulario-container">
+  <h2>Formulário de Cadastro de Pessoa</h2>
+  <form [formGroup]="cadastroForm" (ngSubmit)="cadastrarPessoa()" class="formulario-form">
+
+    <div class="form-field">
+      <div class="label-input">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" pInputText formControlName="nome" />
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label-input">
+        <label for="cpf">CPF</label>
+        <input id="cpf" type="text" pInputText formControlName="cpf" />
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label-input">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" pInputText formControlName="email" />
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label-input">
+        <label for="telefone">Telefone</label>
+        <input id="telefone" type="text" pInputText formControlName="telefone" />
+      </div>
+    </div>
+
+    <p-button label="Cadastrar" [raised]="true" type="submit"></p-button>
+
+  </form>
+</div>
