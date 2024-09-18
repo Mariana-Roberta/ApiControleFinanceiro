@@ -1,5 +1,6 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -13,6 +14,10 @@ public class Grupo {
     private String nome;
     @Column
     private String descricao;
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
     public Grupo() {
     }
@@ -47,12 +52,21 @@ public class Grupo {
         this.descricao = descricao;
     }
 
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
     @Override
     public String toString() {
         return "Grupo{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", pessoa=" + pessoa +
                 '}';
     }
 
@@ -61,11 +75,11 @@ public class Grupo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Grupo grupo = (Grupo) o;
-        return Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao);
+        return Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao);
+        return Objects.hash(id, nome, descricao, pessoa);
     }
 }

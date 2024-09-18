@@ -1,8 +1,11 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
+
 
 @Entity
 public class Pessoa {
@@ -18,6 +21,9 @@ public class Pessoa {
     private String email;
     @Column
     private String telefone;
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<Grupo> grupos;
 
     public Pessoa() {
     }
@@ -70,6 +76,14 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
+
     @Override
     public String toString() {
         return "Pessoa{" +
@@ -78,6 +92,7 @@ public class Pessoa {
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
+                ", grupos=" + grupos +
                 '}';
     }
 
@@ -86,11 +101,11 @@ public class Pessoa {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pessoa pessoa = (Pessoa) o;
-        return Objects.equals(id, pessoa.id) && Objects.equals(nome, pessoa.nome) && Objects.equals(cpf, pessoa.cpf) && Objects.equals(email, pessoa.email) && Objects.equals(telefone, pessoa.telefone);
+        return Objects.equals(id, pessoa.id) && Objects.equals(nome, pessoa.nome) && Objects.equals(cpf, pessoa.cpf) && Objects.equals(email, pessoa.email) && Objects.equals(telefone, pessoa.telefone) && Objects.equals(grupos, pessoa.grupos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, cpf, email, telefone);
+        return Objects.hash(id, nome, cpf, email, telefone, grupos);
     }
 }
