@@ -24,6 +24,9 @@ public class Meta {
         this.valor = valor;
     }
 
+    public Meta() {
+    }
+
     public Integer getId() {
         return id;
     }
