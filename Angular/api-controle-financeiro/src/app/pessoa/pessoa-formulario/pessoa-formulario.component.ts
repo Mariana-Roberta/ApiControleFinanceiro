@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
+import {Pessoa} from "../../model/pessoa";
 import { PessoaFormularioService } from '../../services/pessoa/pessoa-formulario.service'
+import {Form, FormsModule} from "@angular/forms";
 import {FloatLabelModule} from "primeng/floatlabel";
-import {Button, ButtonModule} from "primeng/button";
+import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-pessoa-formulario',
@@ -10,35 +14,33 @@ import {InputTextModule} from "primeng/inputtext";
   imports: [
     FloatLabelModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    FormsModule
   ],
   templateUrl: './pessoa-formulario.component.html',
   styleUrl: './pessoa-formulario.component.css'
 })
 export class PessoaFormularioComponent {
 
-  constructor(private _pessoaFormulario: PessoaFormularioService,
-                private _router: Router,
-                private _formHttpService: FormHttpService) {
+  // Define o objeto pessoa com valores padrão
+    pessoa: Pessoa = {
+      id: 0,
+      nome: 'Nome',
+      email: '',
+      cpf: '',
+      telefone: ''
     }
 
-   onSubmit() {
-      console.log(this.pessoa);
-      // this._formService.addPesssoa(this.pessoa);
-      // this._router.navigate(['/form-table']);
-      this.addPesssoa();
+    // Construtor do componente, onde injetamos o serviço e o router
+    constructor(private _pessoaFormularioService: PessoaFormularioService,
+                private _router: Router) {
     }
 
-    addPesssoa() {
-      this._formHttpService.addPesssoa(this.pessoa)
-        .subscribe({
-          next: (valeu) => {
-            this._router.navigate(['/form-table'])
-          }, error: (err) => {
-            console.error("Falha ao adicionar pessoa", err)
-            alert("Falha ao adicionar pessoa")
-          }
-        });
+    // Método chamado quando o formulário é submetido
+    onSubmit() {
+      // Adiciona a pessoa usando o serviço
+      this._pessoaFormularioService.addPesssoa(this.pessoa);
+      this._router.navigate(['/pessoa/pessoa-listagem']);
     }
 
 }
