@@ -7,11 +7,20 @@ import {Router} from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import {ActivatedRoute} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {Form, FormsModule} from "@angular/forms";
+import {FloatLabelModule} from "primeng/floatlabel";
+import {ButtonModule} from "primeng/button";
+import {InputTextModule} from "primeng/inputtext";
 
 @Component({
   selector: 'app-grupo-form',
   standalone: true,
-  imports: [],
+  imports: [
+    FloatLabelModule,
+    ButtonModule,
+    InputTextModule,
+    FormsModule
+  ],
   templateUrl: './grupo-form.component.html',
   styleUrl: './grupo-form.component.css'
 })
