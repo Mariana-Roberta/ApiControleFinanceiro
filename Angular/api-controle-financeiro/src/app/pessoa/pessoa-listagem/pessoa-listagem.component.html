@@ -1,0 +1,22 @@
+<h2> Tabela Pessoas</h2>
+
+<table>
+
+  <tr>
+    <th>ID</th>
+    <th>NOME</th>
+    <th>EMAIL</th>
+    <th>CPF</th>
+    <th>TELEFONE</th>
+  </tr>
+
+  <tr *ngFor="let pessoa of pessoasList">
+    <td>{{ pessoa.id}}</td>
+    <td>{{ pessoa.nome}}</td>
+    <td>{{ pessoa.email}}</td>
+    <td>{{ pessoa.cpf}}</td>
+    <td>{{ pessoa.telefone}}</td>
+  </tr>
+</table>
+
+<p-button (click)="newPessoa()">Nova Pessoa</p-button>
