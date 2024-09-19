@@ -1,1 +1,20 @@
-<p>grupo-listagem works!</p>
+<h2> Tabela Grupos</h2>
+
+<table>
+
+  <tr>
+    <th>ID</th>
+    <th>NOME</th>
+    <th>DESCRIÇÃO</th>
+    <th>SALDO</th>
+  </tr>
+
+  <tr *ngFor="let grupo of gruposList">
+    <td>{{ grupo.id}}</td>
+    <td>{{ grupo.nome}}</td>
+    <td>{{ grupo.descricao}}</td>
+    <td>{{ grupo.saldo}}</td>
+  </tr>
+</table>
+
+<p-button (click)="newGrupo()">Novo Grupo</p-button>

@@ -1,7 +1,9 @@
+import { Pessoa } from "./pessoa";
+
 export  interface Grupo {
-  Integer id;
-  String nome;
-  String descricao;
-  BigDecimal saldo = BigDecimal.ZERO;
-  Pessoa pessoa;
+  id: number;
+  nome: string,
+  descricao: string,
+  saldo: number,
+  pessoa: Pessoa | undefined
 }

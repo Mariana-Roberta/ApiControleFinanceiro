@@ -6,7 +6,7 @@ public class GrupoDTO {
     private Integer id;
     private String nome;
     private String descricao;
-    private BigDecimal saldo = BigDecimal.ZERO;
+    private double saldo;
     private Pessoa pessoa;
 
     public Integer getId() {

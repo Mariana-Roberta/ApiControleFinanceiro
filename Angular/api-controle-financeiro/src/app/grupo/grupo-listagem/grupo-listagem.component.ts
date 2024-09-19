@@ -3,7 +3,7 @@ import { GrupoFormService } from '../../services/grupo/grupo-form.service'
 import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
 import {Pessoa} from "../../model/pessoa";
-import {Pessoa} from "../../model/grupo";
+import {Grupo} from "../../model/grupo";
 import {ButtonModule} from "primeng/button";
 
 @Component({
@@ -14,7 +14,7 @@ import {ButtonModule} from "primeng/button";
   styleUrl: './grupo-listagem.component.css'
 })
 export class GrupoListagemComponent {
-  gruposList: Grupo[] = this._grupoFormService.getGrupo();
+  gruposList: Grupo[] = this._grupoFormService.getGrupos();
 
   constructor(private _grupoFormService: GrupoFormService,
               private _router: Router) {

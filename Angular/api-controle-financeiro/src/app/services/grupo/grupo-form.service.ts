@@ -12,7 +12,7 @@ export class GrupoFormService {
     // Método para adicionar uma nova pessoa à lista
     addGrupo(grupo: Grupo) {
       // Define um ID para a nova pessoa baseado no tamanho da lista
-      grupo.id = this.grupossList.length > 0 ? this.gruposList.length + 1 : 1;
+      grupo.id = this.gruposList.length > 0 ? this.gruposList.length + 1 : 1;
       console.log(grupo);
       this.gruposList.push(grupo); // Adiciona a pessoa à lista
     }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Pessoa} from "../model/pessoa"
-import {Grupo} from "../model/grupo"
-import {GrupoService} from "../services/grupo/grupo-form.service";
-import {PessoaService} from "../services/pessoa/pessoa-formulario.service";
+import {Pessoa} from "../../model/pessoa"
+import {Grupo} from "../../model/grupo"
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
+import {PessoaFormularioService} from "../../services/pessoa/pessoa-formulario.service";
 import {Router} from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import {ActivatedRoute} from "@angular/router";
@@ -16,40 +16,37 @@ import {NgIf} from "@angular/common";
   styleUrl: './grupo-form.component.css'
 })
 export class GrupoFormComponent implements OnInit {
-  pessoaTemp: Pessoa | undefined;
   grupo: Grupo = {
-        id = 0;
-        nome = '';
-        descricao = '';
-        saldo = BigDecimal.ZERO;
-        pessoa = pessoaTemp;
+        id : 0,
+        nome : '',
+        descricao : '',
+        saldo : 0,
+        pessoa : undefined
       }
 
   constructor(
     private route: ActivatedRoute,
-    private pessoaService: PessoaService,
-    private grupoService: GrupoService,
+    private pessoaService: PessoaFormularioService,
+    private grupoFormService: GrupoFormService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-      this.route.paramMap.subscribe(params => {
-        const id = +params.get('id')!;
-        this.pessoaService.getPessoaById(id).subscribe({
-          next: (data: Pessoa) => {
-            this.pessoaTemp = data;
-          },
-          error: (err) => {
-            console.error('Erro ao buscar pessoa:', err);
-          }
-        });
-      });
+    this.route.paramMap.subscribe(params => {
+      const id = +params.get('id')!;
+      const pessoa = this.pessoaService.getById(id);  // Método para buscar a pessoa
+      if (pessoa) {
+        this.grupo.pessoa = pessoa;  // Atribui a pessoa ao grupo
+      } else {
+        console.error('Pessoa não encontrada');
+      }
+    });
     }
 
     onSubmit() {
           // Adiciona a grupo usando o serviço
-          this._grupoFormService.addGrupo(this.grupo);
-          this._router.navigate(['/grupo/grupo-listagem']);
+          this.grupoFormService.addGrupo(this.grupo);
+          this.router.navigate(['/grupo/grupo-listagem']);
         }
 
 }
