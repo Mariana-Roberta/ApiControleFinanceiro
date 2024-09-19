@@ -7,6 +7,7 @@ import {FloatLabelModule} from "primeng/floatlabel";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-pessoa-formulario',
@@ -25,7 +26,7 @@ export class PessoaFormularioComponent {
   // Define o objeto pessoa com valores padrão
     pessoa: Pessoa = {
       id: 0,
-      nome: 'Nome',
+      nome: '',
       email: '',
       cpf: '',
       telefone: ''
@@ -38,9 +39,13 @@ export class PessoaFormularioComponent {
 
     // Método chamado quando o formulário é submetido
     onSubmit() {
-      // Adiciona a pessoa usando o serviço
-      this._pessoaFormularioService.addPesssoa(this.pessoa);
-      this._router.navigate(['/pessoa/pessoa-listagem']);
+      if (this.pessoa.nome != null && this.pessoa.nome != '') {
+        this._pessoaFormularioService.addPesssoa(this.pessoa);
+        this._router.navigate(['/pessoa/pessoa-listagem']);
+      } else {
+        // Lógica para lidar com o formulário inválido (opcional)
+      }
     }
+
 
 }
