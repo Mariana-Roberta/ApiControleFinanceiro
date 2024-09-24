@@ -1,7 +1,10 @@
+import {Grupo} from "./grupo";
+
 export  interface Pessoa {
   id: number,
   nome: string,
   email: string,
   cpf: string,
-  telefone: string
+  telefone: string,
+  grupos: Grupo[]
 }

@@ -1,62 +1,71 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { Location } from '@angular/common';
+import {Pessoa} from "../../models/pessoa";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {Button} from "primeng/button";
-import {Router} from "@angular/router";
-import {Pessoa} from "../../models/pessoa";
-import {PessoaService} from "../../services/pessoa/pessoa.service";
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {InputTextModule} from "primeng/inputtext";
 
 @Component({
-  selector: 'app-pessoa-formulario',
+  selector: 'app-pessoa-edit',
   standalone: true,
   imports: [
     FormsModule,
     Button,
     InputTextModule
   ],
-  templateUrl: './pessoa-formulario.component.html',
-  styleUrl: './pessoa-formulario.component.css'
+  templateUrl: './pessoa-edit.component.html',
+  styleUrl: './pessoa-edit.component.css'
 })
-export class PessoaFormularioComponent {
+export class PessoaEditComponent implements OnInit {
 
-  // Define o objeto pessoa com valores padrão
   pessoa: Pessoa = {
     id: 0,
     nome: '',
-    email: '',
     cpf: '',
+    email: '',
     telefone: '',
     grupos: []
-  }
+  };
 
-  // Construtor do componente, onde injetamos o serviço e o router
-  constructor(private _pessoaService: PessoaService,
-              private _router: Router,
-              private _pessoaHttpService: PessoaHttpService) {
-  }
+  constructor(
+    private pessoaService: PessoaHttpService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) {}
 
-  // Método chamado quando o formulário é submetido
-  onSubmit() {
-    /*if (this.pessoa.nome != null && this.pessoa.nome != '') {
-      this._pessoaService.addPesssoa(this.pessoa);
-      this._router.navigate(['/pessoa/pessoa-listagem']);
-    } else {
-      // Lógica para lidar com o formulário inválido (opcional)
-    }*/
-    this.addPesssoa();
-  }
-
-  addPesssoa() {
-    this._pessoaHttpService.addPesssoa(this.pessoa)
-      .subscribe({
-        next: (value) => {
-          this._router.navigate(['/pessoa/pessoa-listagem'])
-        }, error: (err) => {
-          console.error("Falha ao adicionar pessoa", err)
-          alert("Falha ao adicionar pessoa")
+  ngOnInit() {
+    // Obtém o id da pessoa da rota
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.pessoaService.getPessoaById(Number(id)).subscribe(
+        (dados: Pessoa) => {
+          this.pessoa = dados;
+        },
+        (error) => {
+          console.error('Erro ao carregar dados da pessoa', error);
         }
-      });
+      );
+    }
+  }
+
+  onSubmit() {
+    if (this.pessoa.id) {
+      this.pessoaService.updatePessoa(this.pessoa).subscribe(
+        () => {
+          this.router.navigate(['/pessoa/pessoa-listagem']); // Navega de volta para a lista de pessoas
+        },
+        (error) => {
+          console.error('Erro ao atualizar pessoa', error);
+        }
+      );
+    }
+  }
+
+  voltar() {
+    this.location.back(); // Volta para a página anterior no histórico
   }
 
   formatarCpf() {

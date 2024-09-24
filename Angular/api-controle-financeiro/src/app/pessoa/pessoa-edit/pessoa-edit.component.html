@@ -1,18 +1,20 @@
+<p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
 <div class="formulario-container">
-  <h2>Formulário de Cadastro de Pessoa</h2>
+  <h2>Editar Pessoa</h2>
   <form (ngSubmit)="onSubmit()" class="formulario-form">
 
     <label for="nome">Nome:</label>
     <input id="nome" pInputText [(ngModel)]="pessoa.nome" name="nome">
 
     <label for="email">E-mail:</label>
-    <input id="email" pInputText [(ngModel)]="pessoa.email" name="email" >
+    <input id="email" pInputText [(ngModel)]="pessoa.email" name="email">
 
     <label for="cpf">CPF:</label>
-    <input id="cpf" pInputText [(ngModel)]="pessoa.cpf" name="cpf" (input)="formatarCpf()" maxlength="14" >
+    <input id="cpf" pInputText [(ngModel)]="pessoa.cpf" name="cpf" (input)="formatarCpf()" maxlength="14">
 
     <label for="telefone">Telefone:</label>
-    <input id="telefone" pInputText [(ngModel)]="pessoa.telefone" name="telefone" (input)="formatarTelefone()" maxlength="15" >
+    <input id="telefone" pInputText [(ngModel)]="pessoa.telefone" name="telefone" (input)="formatarTelefone()" maxlength="15">
+
 
     <p-button label="Salvar" [raised]="true" type="submit"></p-button>
 
