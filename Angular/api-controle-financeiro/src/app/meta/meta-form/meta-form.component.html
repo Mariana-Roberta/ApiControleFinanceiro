@@ -1,1 +1,30 @@
-<p>meta-form works!</p>
+<div class="meta-form"></div>
+
+<h2>Formulario de Metas</h2>
+<form (ngSummit) = "onSubmit()" class="meta-form">
+
+<label for="valor">Valor:</label>
+<input id="valor" pInputText [(ngModel)]="metas.valor">
+
+<label for="tipo">Tipo:</label>
+<input id="tipo" pInputText [([(ngModel)]="metas.tipo")]>
+
+
+<p-button label="Cadastrar" [raised]="true" type="submit"></p-button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
+
