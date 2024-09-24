@@ -1,54 +1,60 @@
-package com.grupoMarianaOttony.ApiControleFinanceiro.controller;
+// Mariana
 
-import com.grupoMarianaOttony.ApiControleFinanceiro.dto.PessoaDTO;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
-import com.grupoMarianaOttony.ApiControleFinanceiro.service.PessoaService;
+package com.api.ApiControleFinanceiro.controller;
+
+import com.api.ApiControleFinanceiro.dto.PessoaDTO;
+import com.api.ApiControleFinanceiro.mappers.PessoaMapper;
+import com.api.ApiControleFinanceiro.model.Pessoa;
+import com.api.ApiControleFinanceiro.service.PessoaService;
+
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/pessoa")
+@RequestMapping("/pessoa")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir apenas o frontend local
 public class PessoaController {
 
     @Autowired
     private PessoaService pessoaService;
 
+    @PostMapping
+    public Pessoa save(@RequestBody PessoaDTO pessoaDto) {
+        Pessoa pessoa = PessoaMapper.toEntity(pessoaDto);
+        return this.pessoaService.save(pessoa);
+    }
+
+    @GetMapping("/{id}")
+    public Pessoa obterPessoa(@PathVariable Integer id) {
+        // Busca a pessoa pelo ID no serviço
+        Pessoa pessoa = pessoaService.findById(id);
+
+        return pessoa;
+    }
+
+    @PutMapping("/{id}")
+    public Pessoa update(@RequestBody PessoaDTO pessoaDto) {
+        Pessoa pessoa = PessoaMapper.toEntity(pessoaDto);
+        return this.pessoaService.save(pessoa);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarPessoa(@PathVariable Integer id) {
+        // Verifica se a pessoa existe
+        Pessoa pessoaExistente = pessoaService.findById(id);
+
+        pessoaService.deleteById(id);
+    }
+
     @GetMapping
     public List<Pessoa> findAll() {
         return this.pessoaService.findAll();
     }
-
-    @GetMapping(value = "/{id}")
-    public Pessoa findById(@PathVariable Integer id) {
-        return this.pessoaService.findById(id);
-    }
-
-    @PostMapping
-    public Pessoa save(@RequestBody PessoaDTO pessoaDTO) {
-        String nome = pessoaDTO.getNome();
-        String cpf = pessoaDTO.getCpf();
-        String email = pessoaDTO.getEmail();
-        String telefone = pessoaDTO.getTelefone();
-        List<Grupo> grupos = pessoaDTO.getGrupos();
-
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId(1);
-        pessoa.setNome(nome);
-        pessoa.setCpf(cpf);
-        pessoa.setEmail(email);
-        pessoa.setTelefone(telefone);
-        pessoa.setGrupos(grupos);
-
-        return this.pessoaService.save(pessoa);
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public void delete(Integer id){
-        this.pessoaService.deleteById(id);
-    }
 }
+
