@@ -5,6 +5,7 @@ package com.api.ApiControleFinanceiro.controller;
 import com.api.ApiControleFinanceiro.dto.GrupoDTO;
 import com.api.ApiControleFinanceiro.mappers.GrupoMapper;
 import com.api.ApiControleFinanceiro.model.Grupo;
+import com.api.ApiControleFinanceiro.model.Lancamento;
 import com.api.ApiControleFinanceiro.model.Pessoa;
 import com.api.ApiControleFinanceiro.service.GrupoService;
 
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +35,8 @@ public class GrupoController {
     public Grupo criarGrupo(@PathVariable Integer id, @Valid @RequestBody GrupoDTO grupoDTO) {
         // Converte o DTO para a entidade
         Pessoa pessoa = pessoaService.findById(id);
-        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, null); // grupo ao ser criado não possui lançamentos
+        List<Lancamento> lancamentos = new ArrayList<Lancamento>();
+        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, lancamentos); // grupo ao ser criado não possui lançamentos
 
         return this.grupoService.save(grupo);
     }
