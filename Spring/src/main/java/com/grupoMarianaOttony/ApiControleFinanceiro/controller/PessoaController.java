@@ -39,8 +39,15 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public Pessoa update(@RequestBody PessoaDTO pessoaDto) {
-        Pessoa pessoa = PessoaMapper.toEntity(pessoaDto);
+    public Pessoa update(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDto) {
+        Pessoa pessoa = pessoaService.findById(id);
+
+        if (pessoa != null) {
+            pessoa.setNome(pessoaDto.getNome());
+            pessoa.setCpf(pessoaDto.getCpf());
+            pessoa.setEmail(pessoaDto.getEmail());
+            pessoa.setTelefone(pessoaDto.getTelefone());
+        }
         return this.pessoaService.save(pessoa);
     }
 
