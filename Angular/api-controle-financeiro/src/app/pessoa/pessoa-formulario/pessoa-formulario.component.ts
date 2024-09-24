@@ -7,6 +7,10 @@ import {PessoaService} from "../../services/pessoa/pessoa.service";
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {InputTextModule} from "primeng/inputtext";
 
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import { NgForm } from '@angular/forms';
+
+
 @Component({
   selector: 'app-pessoa-formulario',
   standalone: true,
@@ -21,6 +25,7 @@ import {InputTextModule} from "primeng/inputtext";
 export class PessoaFormularioComponent {
 
   // Define o objeto pessoa com valores padrão
+
   pessoa: Pessoa = {
     id: 0,
     nome: '',
@@ -30,11 +35,21 @@ export class PessoaFormularioComponent {
     grupos: []
   }
 
+    pessoa: Pessoa = {
+      id: 0,
+      nome: '',
+      email: '',
+      cpf: '',
+      telefone: ''
+    }
+
+
   // Construtor do componente, onde injetamos o serviço e o router
   constructor(private _pessoaService: PessoaService,
               private _router: Router,
               private _pessoaHttpService: PessoaHttpService) {
   }
+
 
   // Método chamado quando o formulário é submetido
   onSubmit() {
@@ -63,6 +78,16 @@ export class PessoaFormularioComponent {
     let cpf = this.pessoa.cpf.replace(/\D/g, '');
     if (cpf.length > 11) {
       cpf = cpf.slice(0, 11);
+
+    // Método chamado quando o formulário é submetido
+    onSubmit() {
+      if (this.pessoa.nome != null && this.pessoa.nome != '') {
+        this._pessoaFormularioService.addPesssoa(this.pessoa);
+        this._router.navigate(['/pessoa/pessoa-listagem']);
+      } else {
+        // Lógica para lidar com o formulário inválido (opcional)
+      }
+
     }
     if (cpf.length > 9) {
       cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4');
@@ -73,6 +98,7 @@ export class PessoaFormularioComponent {
     }
     this.pessoa.cpf = cpf;
   }
+
 
   formatarTelefone() {
     let telefone = this.pessoa.telefone.replace(/\D/g, '');
@@ -88,4 +114,5 @@ export class PessoaFormularioComponent {
     }
     this.pessoa.telefone = telefone;
   }
+
 }
