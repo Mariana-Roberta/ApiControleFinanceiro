@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { PessoaFormularioService } from '../../services/pessoa/pessoa-formulario.service'
-import {FloatLabelModule} from "primeng/floatlabel";
-import {Button, ButtonModule} from "primeng/button";
+import {FormsModule} from "@angular/forms";
+import {Button} from "primeng/button";
+import {Router} from "@angular/router";
+import {Pessoa} from "../../models/pessoa";
+import {PessoaService} from "../../services/pessoa/pessoa.service";
+import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {InputTextModule} from "primeng/inputtext";
+
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-pessoa-formulario',
   standalone: true,
   imports: [
-    FloatLabelModule,
-    ButtonModule,
+    FormsModule,
+    Button,
     InputTextModule
   ],
   templateUrl: './pessoa-formulario.component.html',
@@ -17,28 +24,95 @@ import {InputTextModule} from "primeng/inputtext";
 })
 export class PessoaFormularioComponent {
 
-  constructor(private _pessoaFormulario: PessoaFormularioService,
-                private _router: Router,
-                private _formHttpService: FormHttpService) {
+  // Define o objeto pessoa com valores padrão
+
+  pessoa: Pessoa = {
+    id: 0,
+    nome: '',
+    email: '',
+    cpf: '',
+    telefone: '',
+    grupos: []
+  }
+
+    pessoa: Pessoa = {
+      id: 0,
+      nome: '',
+      email: '',
+      cpf: '',
+      telefone: ''
     }
 
-   onSubmit() {
-      console.log(this.pessoa);
-      // this._formService.addPesssoa(this.pessoa);
-      // this._router.navigate(['/form-table']);
-      this.addPesssoa();
-    }
 
-    addPesssoa() {
-      this._formHttpService.addPesssoa(this.pessoa)
-        .subscribe({
-          next: (valeu) => {
-            this._router.navigate(['/form-table'])
-          }, error: (err) => {
-            console.error("Falha ao adicionar pessoa", err)
-            alert("Falha ao adicionar pessoa")
-          }
-        });
+  // Construtor do componente, onde injetamos o serviço e o router
+  constructor(private _pessoaService: PessoaService,
+              private _router: Router,
+              private _pessoaHttpService: PessoaHttpService) {
+  }
+
+
+  // Método chamado quando o formulário é submetido
+  onSubmit() {
+    /*if (this.pessoa.nome != null && this.pessoa.nome != '') {
+      this._pessoaService.addPesssoa(this.pessoa);
+      this._router.navigate(['/pessoa/pessoa-listagem']);
+    } else {
+      // Lógica para lidar com o formulário inválido (opcional)
+    }*/
+    this.addPesssoa();
+  }
+
+  addPesssoa() {
+    this._pessoaHttpService.addPesssoa(this.pessoa)
+      .subscribe({
+        next: (value) => {
+          this._router.navigate(['/pessoa/pessoa-listagem'])
+        }, error: (err) => {
+          console.error("Falha ao adicionar pessoa", err)
+          alert("Falha ao adicionar pessoa")
+        }
+      });
+  }
+
+  formatarCpf() {
+    let cpf = this.pessoa.cpf.replace(/\D/g, '');
+    if (cpf.length > 11) {
+      cpf = cpf.slice(0, 11);
+
+    // Método chamado quando o formulário é submetido
+    onSubmit() {
+      if (this.pessoa.nome != null && this.pessoa.nome != '') {
+        this._pessoaFormularioService.addPesssoa(this.pessoa);
+        this._router.navigate(['/pessoa/pessoa-listagem']);
+      } else {
+        // Lógica para lidar com o formulário inválido (opcional)
+      }
+
     }
+    if (cpf.length > 9) {
+      cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4');
+    } else if (cpf.length > 6) {
+      cpf = cpf.replace(/(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-');
+    } else if (cpf.length > 3) {
+      cpf = cpf.replace(/(\d{3})(\d{1})/, '$1.$2');
+    }
+    this.pessoa.cpf = cpf;
+  }
+
+
+  formatarTelefone() {
+    let telefone = this.pessoa.telefone.replace(/\D/g, '');
+    if (telefone.length > 11) {
+      telefone = telefone.slice(0, 11);
+    }
+    if (telefone.length > 10) {
+      telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (telefone.length > 5) {
+      telefone = telefone.replace(/(\d{2})(\d{5})/, '($1) $2-');
+    } else if (telefone.length > 2) {
+      telefone = telefone.replace(/(\d{2})/, '($1)');
+    }
+    this.pessoa.telefone = telefone;
+  }
 
 }
