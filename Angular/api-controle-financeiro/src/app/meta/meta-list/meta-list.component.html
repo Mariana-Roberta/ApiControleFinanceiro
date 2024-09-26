@@ -1,1 +1,25 @@
-<p>meta-list works!</p>
+<p-button label="Nova Meta" [raised]="true" ((click)="irParaFormulario()")></p-button>
+<p-table [value]="pessoas" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+  <tr>
+    <th>Tipo</th>
+    <th>Valor</th>
+  </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-meta>
+  <tr>
+    <td>{{meta.tipo}}</td>
+    <td>{{meta.valor}}</td>
+    <td><p-button (click) = "editarMeta(meta)">Editar</p-button> <p-button (click)="verMeta(meta)"></p-button> </td>
+    <td><p-button (click)="CriarNovaMeta">Nova Meta</p-button></td>
+  </tr>
+
+
+
+</p-table>
+</ng-template>
+
+
+
+
+
