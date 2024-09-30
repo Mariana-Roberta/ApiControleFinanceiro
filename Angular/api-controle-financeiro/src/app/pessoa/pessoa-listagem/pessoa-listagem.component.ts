@@ -1,31 +1,58 @@
-import { Component } from '@angular/core';
-import { PessoaFormularioService } from '../../services/pessoa/pessoa-formulario.service'
-import {NgForOf} from "@angular/common";
+import {Component, OnInit} from '@angular/core';
+import {TableModule} from "primeng/table";
+import {Button} from "primeng/button";
+import {Pessoa} from "../../models/pessoa";
+import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {Router} from "@angular/router";
-import {Pessoa} from "../../model/pessoa";
-import {ButtonModule} from "primeng/button";
 
 @Component({
   selector: 'app-pessoa-listagem',
   standalone: true,
-  imports: [NgForOf, ButtonModule],
+  imports: [
+    TableModule,
+    Button
+  ],
   templateUrl: './pessoa-listagem.component.html',
   styleUrl: './pessoa-listagem.component.css'
 })
-export class PessoaListagemComponent {
+export class PessoaListagemComponent implements OnInit {
 
-  pessoasList: Pessoa[] = this._pessoaFormularioService.getPessoas();
+  pessoas: Pessoa[] = []; // Lista de pessoas a ser exibida
 
-  constructor(private _pessoaFormularioService: PessoaFormularioService,
-              private _router: Router) {
+  constructor(private pessoaHttpService: PessoaHttpService, private router: Router) {}
+
+  ngOnInit() {
+    this.carregarPessoas();
   }
 
-
-  newPessoa(){
-    this._router.navigate(['/pessoa/pessoa-formulario']);
+  // Método para carregar a lista de pessoas do serviço
+  carregarPessoas() {
+    this.pessoaHttpService.getPessoas().subscribe(
+      (dados: Pessoa[]) => {
+        this.pessoas = dados;
+      },
+      (error) => {
+        console.error('Erro ao carregar pessoas', error);
+      }
+    );
   }
 
-  /*ngOnInit(): void {
-    pessoasList = this._pessoaFormularioService.getPessoas();
-  }*/
+  // Método para editar uma pessoa
+  editarPessoa(pessoa: Pessoa) {
+    // Navega para a página de edição com o ID da pessoa
+    this.router.navigate(['/pessoa/pessoa-edit', pessoa.id]);
+  }
+
+  verPessoa(pessoa: Pessoa) {
+    // Navega para a página de edição com o ID da pessoa
+    this.router.navigate(['/pessoa/pessoa-visualizacao', pessoa.id]);
+  }
+
+  criarNovoGrupo(pessoa: Pessoa) {
+    this.router.navigate(['/grupo/grupo-formulario', pessoa.id]);
+  }
+
+  irParaFormulario() {
+    this.router.navigate(['/pessoa/pessoa-formulario'])
+  }
 }

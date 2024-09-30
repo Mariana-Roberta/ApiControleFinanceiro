@@ -1,55 +1,73 @@
-package com.grupoMarianaOttony.ApiControleFinanceiro.controller;
+// Mariana
 
-import com.grupoMarianaOttony.ApiControleFinanceiro.dto.GrupoDTO;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
-import com.grupoMarianaOttony.ApiControleFinanceiro.service.GrupoService;
+package com.api.ApiControleFinanceiro.controller;
+
+import com.api.ApiControleFinanceiro.dto.GrupoDTO;
+import com.api.ApiControleFinanceiro.mappers.GrupoMapper;
+import com.api.ApiControleFinanceiro.model.Grupo;
+import com.api.ApiControleFinanceiro.model.Lancamento;
+import com.api.ApiControleFinanceiro.model.Pessoa;
+import com.api.ApiControleFinanceiro.service.GrupoService;
+
+import com.api.ApiControleFinanceiro.service.PessoaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/grupo")
+@RequestMapping("/grupo")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir apenas o frontend local
 public class GrupoController {
 
     @Autowired
     private GrupoService grupoService;
 
-    @PostMapping("/save")
-    public ResponseEntity<Grupo> save(@RequestBody GrupoDTO grupoDTO) {
-        System.out.println("Received DTO: " + grupoDTO);
+    @Autowired
+    private PessoaService pessoaService;
 
-        String nome = grupoDTO.getNome();
-        String descricao = grupoDTO.getDescricao();
-        Pessoa pessoa = grupoDTO.getPessoa();
+    @PostMapping("/{id}")
+    public Grupo criarGrupo(@PathVariable Integer id, @Valid @RequestBody GrupoDTO grupoDTO) {
+        // Converte o DTO para a entidade
+        Pessoa pessoa = pessoaService.findById(id);
+        List<Lancamento> lancamentos = new ArrayList<Lancamento>();
+        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, lancamentos); // grupo ao ser criado não possui lançamentos
 
-        Grupo grupo = new Grupo();
-        grupo.setId(1);
-        grupo.setNome(nome);
-        grupo.setDescricao(descricao);
-        grupo.setPessoa(pessoa);
-
-        grupo = this.grupoService.save(grupo);
-
-        return ResponseEntity.ok(grupo);
+        return this.grupoService.save(grupo);
     }
 
-    @GetMapping("/listagem")
-    public ResponseEntity<List<Grupo>> getListaGrupos() {
-        List<Grupo> listaGrupos = grupoService.findAll();
-        return ResponseEntity.ok(listaGrupos);
+    @GetMapping("/{id}")
+    public Grupo obterGrupo(@PathVariable Integer id) {
+        return this.grupoService.findById(id);
     }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<Grupo> getPessoaById(@PathVariable Integer id) {
-        Grupo grupo = grupoService.findById(id);
-        if (grupo != null) {
-            return ResponseEntity.ok(grupo);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    @PutMapping("/{id}")
+    public Grupo atualizarGrupo(@PathVariable Integer id, @Valid @RequestBody GrupoDTO grupoDTO) {
+        // Verifica se o grupo existe
+        Grupo grupoExistente = grupoService.findById(id);
+
+        // Atualiza os dados do grupo existente com os dados do DTO
+        grupoExistente.setNome(grupoDTO.getNome());
+        grupoExistente.setDescricao(grupoDTO.getDescricao());
+
+        return this.grupoService.save(grupoExistente);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarGrupo(@PathVariable Integer id) {
+        // Verifica se o grupo existe
+        Grupo grupoExistente = grupoService.findById(id);
+
+        grupoService.deleteById(id);
+    }
+
+    @GetMapping
+    public List<Grupo> listarGrupos() {
+        return this.grupoService.findAll();
     }
 }

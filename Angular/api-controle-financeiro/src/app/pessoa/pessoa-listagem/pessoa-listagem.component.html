@@ -1,22 +1,23 @@
-<h2> Tabela Pessoas</h2>
-
-<table>
-
-  <tr>
-    <th>ID</th>
-    <th>NOME</th>
-    <th>EMAIL</th>
-    <th>CPF</th>
-    <th>TELEFONE</th>
-  </tr>
-
-  <tr *ngFor="let pessoa of pessoasList">
-    <td>{{ pessoa.id}}</td>
-    <td>{{ pessoa.nome}}</td>
-    <td>{{ pessoa.email}}</td>
-    <td>{{ pessoa.cpf}}</td>
-    <td>{{ pessoa.telefone}}</td>
-  </tr>
-</table>
-
-<p-button (click)="newPessoa()">Nova Pessoa</p-button>
+<p-button label="Nova Pessoa" [raised]="true" (click)="irParaFormulario()"></p-button>
+<p-table [value]="pessoas" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Cpf</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Ação</th>
+      <th>Grupos</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-pessoa>
+    <tr>
+      <td>{{ pessoa.nome }}</td>
+      <td>{{ pessoa.cpf }}</td>
+      <td>{{ pessoa.email }}</td>
+      <td>{{ pessoa.telefone }}</td>
+      <td><p-button (click) = "editarPessoa(pessoa)">Editar</p-button> <p-button (click) = "verPessoa(pessoa)">Ver</p-button> </td>
+      <td><p-button (click) = "criarNovoGrupo(pessoa)">Novo Grupo</p-button></td>
+    </tr>
+  </ng-template>
+</p-table>
