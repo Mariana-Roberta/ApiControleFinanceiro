@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Pessoa} from "../../model/pessoa"
 import {Grupo} from "../../model/grupo"
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
-import {PessoaFormularioService} from "../../services/pessoa/pessoa-formulario.service";
 import {Router} from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import {ActivatedRoute} from "@angular/router";
@@ -25,37 +25,44 @@ import {InputTextModule} from "primeng/inputtext";
   styleUrl: './grupo-form.component.css'
 })
 export class GrupoFormComponent implements OnInit {
-  grupo: Grupo = {
+  pessoaId: number | undefined;
+  grupoForm: FormGroup;
+ /* grupo: Grupo = {
         id : 0,
         nome : '',
         descricao : '',
         saldo : 0,
         pessoa : undefined
-      }
+      }*/
 
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
-    private pessoaService: PessoaFormularioService,
     private grupoFormService: GrupoFormService,
     private router: Router
-  ) {}
+  ) {this.grupoForm = this.fb.group({
+    nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    descricao: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+    pessoaId: ['', [Validators.required]]
+  });}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = +params.get('id')!;
-      const pessoa = this.pessoaService.getById(id);  // Método para buscar a pessoa
-      if (pessoa) {
-        this.grupo.pessoa = pessoa;  // Atribui a pessoa ao grupo
-      } else {
-        console.error('Pessoa não encontrada');
-      }
-    });
+    const pessoaIdParam = this.route.snapshot.paramMap.get('pessoaId');
+    if (pessoaIdParam !== null) {
+      this.pessoaId = +pessoaIdParam;
+    } else {
+      console.error('pessoaId not found in route parameters.');
+    }
+    this.grupoForm.patchValue({ pessoaId: this.pessoaId });
     }
 
     onSubmit() {
           // Adiciona a grupo usando o serviço
-          this.grupoFormService.addGrupo(this.grupo);
-          this.router.navigate(['/grupo/grupo-listagem']);
+          if (this.grupoForm.valid) {
+            this.grupoFormService.createGrupo(this.grupoForm.value).subscribe(response => {
+              console.log('Grupo criado com sucesso:', response);
+            });
+          }
         }
 
 }

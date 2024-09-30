@@ -1,30 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Grupo } from "../../model/grupo";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Grupo } from '../../model/grupo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GrupoFormService {
-  gruposList: Grupo[] = [];
+  private apiUrl = 'http://localhost:8080/grupo';  // Endpoint do controller Spring Boot
 
-    constructor() { }
+  constructor(private http: HttpClient) {}
 
-    // Método para adicionar uma nova pessoa à lista
-    addGrupo(grupo: Grupo) {
-      // Define um ID para a nova pessoa baseado no tamanho da lista
-      grupo.id = this.gruposList.length > 0 ? this.gruposList.length + 1 : 1;
-      console.log(grupo);
-      this.gruposList.push(grupo); // Adiciona a pessoa à lista
-    }
+  // Criar um novo grupo
+  createGrupo(grupo: Grupo): Observable<Grupo> {
+    return this.http.post<Grupo>(this.apiUrl, grupo);
+  }
 
-    // Método para obter a lista de todas as pessoas
-    getGrupos(): Grupo[] {
-      return this.gruposList; // Retorna a lista de pessoas
-    }
+  // Obter todos os grupos (caso seja necessário)
+  getGrupos(): Observable<Grupo[]> {
+    return this.http.get<Grupo[]>(this.apiUrl);
+  }
 
-    // Método para obter uma pessoa pelo ID
-    getById(id: number | null): Grupo {
-      // Busca a pessoa na lista pelo ID e retorna
-      return <Grupo>this.gruposList.find(grupo => grupo.id === id);
-    }
+  // Obter um grupo por ID (opcional)
+  getGrupoById(id: number): Observable<Grupo> {
+    return this.http.get<Grupo>(`${this.apiUrl}/${id}`);
+  }
+
+  // Atualizar um grupo (opcional)
+  updateGrupo(id: number, grupo: Grupo): Observable<Grupo> {
+    return this.http.put<Grupo>(`${this.apiUrl}/${id}`, grupo);
+  }
+
+  // Deletar um grupo (opcional)
+  deleteGrupo(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }
+
