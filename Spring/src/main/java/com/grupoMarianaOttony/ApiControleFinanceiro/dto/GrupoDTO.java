@@ -1,8 +1,8 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.dto;
+package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
-import com.api.ApiControleFinanceiro.model.Lancamento;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

@@ -1,9 +1,9 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.service;
+package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
-import com.api.ApiControleFinanceiro.model.Grupo;
-import com.api.ApiControleFinanceiro.repository.GrupoRepository;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.repository.GrupoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

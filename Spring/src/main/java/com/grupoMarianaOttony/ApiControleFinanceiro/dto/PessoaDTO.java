@@ -1,6 +1,6 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.dto;
+package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
