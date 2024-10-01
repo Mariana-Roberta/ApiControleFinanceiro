@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Meta } from '../../model/meta';
 import { MetaHttpService } from '../../services/meta/meta-http.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-meta-edit',
