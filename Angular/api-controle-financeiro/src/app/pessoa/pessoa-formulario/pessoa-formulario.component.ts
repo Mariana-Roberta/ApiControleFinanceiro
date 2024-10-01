@@ -6,7 +6,6 @@ import {Pessoa} from "../../model/pessoa";
 import {PessoaService} from "../../services/pessoa/pessoa.service";
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {InputTextModule} from "primeng/inputtext";
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
@@ -38,7 +37,6 @@ export class PessoaFormularioComponent {
   constructor(private _pessoaService: PessoaService,
               private _router: Router,
               private _pessoaHttpService: PessoaHttpService,
-              private snackBar: MatSnackBar,
               private messageService: MessageService) {
   }
 
