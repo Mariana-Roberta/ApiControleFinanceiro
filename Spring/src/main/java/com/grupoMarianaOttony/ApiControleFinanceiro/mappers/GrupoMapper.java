@@ -1,11 +1,11 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.mappers;
+package com.grupoMarianaOttony.ApiControleFinanceiro.mappers;
 
-import com.api.ApiControleFinanceiro.dto.GrupoDTO;
-import com.api.ApiControleFinanceiro.model.Grupo;
-import com.api.ApiControleFinanceiro.model.Lancamento;
-import com.api.ApiControleFinanceiro.model.Pessoa;
+import com.grupoMarianaOttony.ApiControleFinanceiro.dto.GrupoDTO;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
 
 import java.util.List;
 

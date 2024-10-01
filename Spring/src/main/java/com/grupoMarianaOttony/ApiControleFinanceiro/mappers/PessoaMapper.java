@@ -1,9 +1,9 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.mappers;
+package com.grupoMarianaOttony.ApiControleFinanceiro.mappers;
 
-import com.api.ApiControleFinanceiro.dto.PessoaDTO;
-import com.api.ApiControleFinanceiro.model.Pessoa;
+import com.grupoMarianaOttony.ApiControleFinanceiro.dto.PessoaDTO;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
 
 public class PessoaMapper {
 
