@@ -7,6 +7,8 @@ import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import { NgForm } from '@angular/forms';
+import { MetaService } from '../../services/meta/meta.service';
+import { MetaHttpService } from '../../services/meta/meta-http.service';
 
 @Component({
   selector: 'app-meta-form',
@@ -36,7 +38,7 @@ export class MetaFormComponent {
 
 
 
-addPessoa(){
+addMeta(){
   this._metaHttpService.addMeta(this.meta)
   .subscribe({
     next: (value) => {
@@ -45,10 +47,10 @@ addPessoa(){
       console.error("falha ao adicionar a meta", err)
       alert("Falha ao adicionar meta")
     }
+  });
+  }
+    
 
-      
-  }),
-}
 
 //dois on submit?
 
