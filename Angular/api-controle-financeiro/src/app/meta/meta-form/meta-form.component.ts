@@ -30,9 +30,32 @@ export class MetaFormComponent {
 
   constructor(private _metaService: MetaService,
               private _router: Router,
-              private _metaHttpService
+              private _metaHttpService: MetaHttpService){
+
+              }
 
 
-  )
+
+addPessoa(){
+  this._metaHttpService.addMeta(this.meta)
+  .subscribe({
+    next: (value) => {
+      this._router.navigate(['/meta/meta-list'])
+    }, error: (err) => {
+      console.error("falha ao adicionar a meta", err)
+      alert("Falha ao adicionar meta")
+    }
+
+      
+  }),
+}
+
+//dois on submit?
+
+
+
+
+
+
 
 }

@@ -51,5 +51,11 @@ p-button {
   align-self: center; /* Centraliza o botão */
 }
 
+.error {
+  color: red; /* Cor das mensagens de erro */
+  font-size: 12px; /* Tamanho da fonte */
+  margin-top: 5px; /* Espaço acima das mensagens de erro */
+}
+
 
 
