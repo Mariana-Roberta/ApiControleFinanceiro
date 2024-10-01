@@ -1,0 +1,33 @@
+
+<!--    Menu   -->
+<div class="menu-voltar">
+    <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+</div>
+<!--    Menu   -->
+
+<!--    Tudo Sobre Lançamento   -->
+<div class="tudo-sobre-lancamento" *ngIf="lancamento">
+
+    <!--    Detalhes do Lançamento   -->
+    <div class="detalhes-lancamento">
+        <p-panel header="Detalhes do Lançamento">
+            <p><strong>Nome do Lançamento:</strong> {{ lancamento.nome }}</p>
+            <p><strong>Descrição:</strong> {{ lancamento.descricao }}</p>
+            <p><strong>Data:</strong> {{ lancamento.data }}</p>
+            <p><strong>Tipo:</strong> {{ lancamento.tipo }}</p>
+            <p><strong>Valor:</strong> {{ lancamento.valor }}</p>
+            <p><strong>Categoria:</strong> {{ lancamento.categoria }}</p>
+        </p-panel>
+    </div>
+    <!--    Detalhes do Lançamento   -->
+
+    <!--    Lançamento -->
+    <div class="info-lancamento">
+        <p-panel header="Lançamento">
+            <p-button label="Editar Lançamento" [raised]="true"></p-button>
+        </p-panel>
+    </div>
+    <!--    Lançamentos -->
+
+</div>
+<!--    Tudo Sobre Lançamento   -->
