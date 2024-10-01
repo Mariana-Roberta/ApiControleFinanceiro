@@ -1,4 +1,4 @@
-package com.api.ApiControleFinanceiro.config;
+package com.grupoMarianaOttony.ApiControleFinanceiro.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
