@@ -1,27 +1,39 @@
 import {Component, OnInit} from '@angular/core';
 import {TableModule} from "primeng/table";
 import {Button} from "primeng/button";
-import {Pessoa} from "../../models/pessoa";
+import {Pessoa} from "../../model/pessoa";
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
-import {Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
+import {NgIf} from "@angular/common";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-pessoa-listagem',
   standalone: true,
-  imports: [
-    TableModule,
-    Button
-  ],
+    imports: [
+        TableModule,
+        Button,
+        NgIf
+    ],
   templateUrl: './pessoa-listagem.component.html',
   styleUrl: './pessoa-listagem.component.css'
 })
 export class PessoaListagemComponent implements OnInit {
 
   pessoas: Pessoa[] = []; // Lista de pessoas a ser exibida
+  criandoGrupo: boolean = false;
 
   constructor(private pessoaHttpService: PessoaHttpService, private router: Router) {}
 
   ngOnInit() {
+    this.router.events.pipe(
+        filter(event => event instanceof NavigationStart)
+    ).subscribe(() => {
+      const navigation = this.router.getCurrentNavigation();
+      if (navigation?.extras.state) {
+        this.criandoGrupo = navigation.extras.state['criandoGrupo'] || false;
+      }
+    });
     this.carregarPessoas();
   }
 

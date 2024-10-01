@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
-import {Pessoa} from "../../models/pessoa";
+import {Pessoa} from "../../model/pessoa";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {Button} from "primeng/button";
@@ -25,8 +25,7 @@ export class PessoaEditComponent implements OnInit {
     nome: '',
     cpf: '',
     email: '',
-    telefone: '',
-    grupos: []
+    telefone: ''
   };
 
   constructor(

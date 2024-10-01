@@ -3,9 +3,12 @@ import {Button} from "primeng/button";
 import {PrimeTemplate} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {Location, NgIf} from "@angular/common";
-import {Pessoa} from "../../models/pessoa";
+import {Pessoa} from "../../model/pessoa";
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {FieldsetModule} from "primeng/fieldset";
+import {Grupo} from "../../model/grupo";
+import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
 
 @Component({
   selector: 'app-pessoa-visualizacao',
@@ -14,7 +17,8 @@ import {ActivatedRoute, Router} from "@angular/router";
     Button,
     PrimeTemplate,
     TableModule,
-    NgIf
+    NgIf,
+    FieldsetModule
   ],
   templateUrl: './pessoa-visualizacao.component.html',
   styleUrl: './pessoa-visualizacao.component.css'
@@ -26,12 +30,14 @@ export class PessoaVisualizacaoComponent implements OnInit {
     nome: '',
     cpf: '',
     email: '',
-    telefone: '',
-    grupos: []
+    telefone: ''
   };
+
+  grupos: Grupo[] = [];
 
   constructor(
       private pessoaService: PessoaHttpService,
+      private grupoService: GrupoHttpService,
       private route: ActivatedRoute,
       private router: Router,
       private location: Location
@@ -44,6 +50,14 @@ export class PessoaVisualizacaoComponent implements OnInit {
       this.pessoaService.getPessoaById(Number(id)).subscribe(
           (dados: Pessoa) => {
             this.pessoa = dados;
+            this.grupoService.getGruposByPessoaId(this.pessoa.id).subscribe(
+                (allGrupos: Grupo[]) => {
+                  this.grupos = allGrupos;
+                },
+                (error) => {
+                  console.error('Erro ao carregar os grupos', error);
+                }
+            );
           },
           (error) => {
             console.error('Erro ao carregar dados da pessoa', error);
