@@ -15,7 +15,7 @@ h2 {
 }
 
 
-.formulario-form {
+.meta-form {
   display: flex; /* Usa flexbox para o layout */
   flex-direction: column; /* Coloca os elementos em coluna */
 }

@@ -20,7 +20,7 @@ import { MetaHttpService } from '../../services/meta/meta-http.service';
     FormsModule
   ],
   templateUrl: './meta-form.component.html',
-  styleUrl: './meta-form.component.css'
+  styleUrls: ['./meta-form.component.css']
 })
 export class MetaFormComponent {
 
@@ -49,6 +49,10 @@ addMeta(){
     }
   });
   }
+
+onSubmit(){
+  this.addMeta;
+}  
     
 
 

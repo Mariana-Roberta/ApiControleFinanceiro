@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MetaEditComponent } from './meta-edit.component';
 
 describe('MetaEditComponent', () => {
