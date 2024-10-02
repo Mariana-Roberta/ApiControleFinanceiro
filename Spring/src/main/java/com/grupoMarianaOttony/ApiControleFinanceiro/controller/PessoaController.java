@@ -1,11 +1,11 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.controller;
+package com.grupoMarianaOttony.ApiControleFinanceiro.controller;
 
-import com.api.ApiControleFinanceiro.dto.PessoaDTO;
-import com.api.ApiControleFinanceiro.mappers.PessoaMapper;
-import com.api.ApiControleFinanceiro.model.Pessoa;
-import com.api.ApiControleFinanceiro.service.PessoaService;
+import com.grupoMarianaOttony.ApiControleFinanceiro.dto.PessoaDTO;
+import com.grupoMarianaOttony.ApiControleFinanceiro.mappers.PessoaMapper;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
+import com.grupoMarianaOttony.ApiControleFinanceiro.service.PessoaService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

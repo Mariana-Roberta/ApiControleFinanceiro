@@ -1,6 +1,6 @@
 // Mariana
 
-package com.api.ApiControleFinanceiro.model;
+package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
