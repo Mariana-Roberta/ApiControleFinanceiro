@@ -1,5 +1,6 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import jakarta.persistence.*;
 import org.hibernate.dialect.TiDBDialect;
@@ -12,16 +13,22 @@ public class Meta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
-    private Tipo tipo;
-    @Column
+    @Column(name = "TIPO", nullable = false)
     @Enumerated(EnumType.STRING)
+    private Tipo tipo;
+    @Column(name = "VALOR", nullable = false)
     private double valor;
 
-    public Meta(Integer id, Tipo tipo, double valor) {
+    @ManyToOne
+    @JoinColumn(name = "grupo_id", nullable = false)
+    @JsonBackReference
+    private Grupo grupo;
+
+    public Meta(Integer id, Tipo tipo, double valor, Grupo grupo) {
         this.id = id;
         this.tipo = tipo;
         this.valor = valor;
+        this.grupo = grupo;
     }
 
     public Meta() {
@@ -50,26 +57,35 @@ public class Meta {
     public void setValor(double valor) {
         this.valor = valor;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Meta meta = (Meta) o;
-        return Double.compare(valor, meta.valor) == 0 && Objects.equals(id, meta.id) && tipo == meta.tipo;
+    
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, tipo, valor);
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
     @Override
     public String toString() {
         return "Meta{" +
                 "id=" + id +
-                ", tipo=" + tipo +
+                ", tipo='" + tipo + '\'' +
                 ", valor=" + valor +
+                ", grupo=" + grupo +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meta meta = (Meta) o;
+        return Objects.equals(id, meta.id) && Objects.equals(tipo, meta.tipo) && Objects.equals(valor, meta.valor) && Objects.equals(grupo, meta.grupo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tipo, valor, grupo);
     }
 }

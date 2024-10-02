@@ -31,6 +31,6 @@ public class MetaService {
     }
 
     public Meta findByType(Tipo tipo) {
-        return metaRepository.findByType(tipo).stream().findFirst().orElse(null);
+        return metaRepository.findByTipo(tipo).stream().findFirst().orElse(null);
     }
 }

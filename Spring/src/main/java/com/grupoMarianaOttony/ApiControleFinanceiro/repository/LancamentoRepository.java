@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 @Repository
 public interface LancamentoRepository extends JpaRepository<Lancamento, Integer> {
-    List<Lancamento> findByNameContainingOrType(String nome, Tipo tipo, Calendar data, Categoria categoria);
+    List<Lancamento> findByNomeContainingOrTipoOrDataOrCategoria(String nome, Tipo tipo, LocalDate data, Categoria categoria);
+    List<Lancamento> findAllByGrupoId(Integer id);
 }

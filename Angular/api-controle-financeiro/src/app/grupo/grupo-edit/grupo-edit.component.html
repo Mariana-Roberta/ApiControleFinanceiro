@@ -1,0 +1,14 @@
+<div class="formulario-container">
+    <h2>Formulário de Cadastro de Grupo</h2>
+    <form (ngSubmit)="onSubmit()" class="formulario-form">
+
+        <label for="nome">Nome:</label>
+        <input id="nome" pInputText [(ngModel)]="grupo.nome" name="nome">
+
+        <label for="descricao">Descrição:</label>
+        <input id="descricao" pInputText [(ngModel)]="grupo.descricao" name="descricao" >
+
+        <p-button label="Salvar" [raised]="true" type="submit"></p-button>
+
+    </form>
+</div>

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MetaRepository extends JpaRepository<Meta, Integer> {
-    List<Meta> findByType(Tipo tipo);
+    List<Meta> findByTipo(Tipo tipo);
 
 }

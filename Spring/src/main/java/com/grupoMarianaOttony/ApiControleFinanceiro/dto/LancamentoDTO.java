@@ -3,13 +3,13 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class LancamentoDTO {
     Integer id;
     String nome;
     String descricao;
-    Calendar data;
+    LocalDate data;
     Tipo tipo;
     double valor;
     Categoria categoria;
@@ -40,11 +40,11 @@ public class LancamentoDTO {
         this.descricao = descricao;
     }
 
-    public Calendar getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

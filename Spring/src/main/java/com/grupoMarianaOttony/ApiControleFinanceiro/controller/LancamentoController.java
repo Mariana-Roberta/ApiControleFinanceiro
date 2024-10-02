@@ -8,7 +8,7 @@ import com.grupoMarianaOttony.ApiControleFinanceiro.service.LancamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -33,7 +33,7 @@ public class LancamentoController {
     public Lancamento save(@RequestBody LancamentoDTO lancamentoDTO) {
         String nome = lancamentoDTO.getNome();
         String descricao = lancamentoDTO.getDescricao();
-        Calendar data = lancamentoDTO.getData();
+        LocalDate data = lancamentoDTO.getData();
         Tipo tipo = lancamentoDTO.getTipo();
         double valor = lancamentoDTO.getValor();
         Categoria categoria = lancamentoDTO.getCategoria();

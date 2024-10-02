@@ -1,40 +1,50 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import jakarta.persistence.*;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name = "LANCAMENTO")
 public class Lancamento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer id; // ID do lançamento
 
-    @Column
-    private String nome;
+    @Column(name = "NOME", nullable = false)
+    private String nome; // Nome do lançamento
 
-    @Column
-    private String descricao;
+    @Column(name = "DESCRICAO")
+    private String descricao; // Descrição do lançamento
 
-    @Column
-    @Temporal(TemporalType.DATE)
-    private Calendar data;
+    @Column(name = "DATA", nullable = false)
+    private LocalDate data; // Data do lançamento
 
-    @Column
+    @Column(name = "TIPO", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Tipo tipo;
+    private Tipo tipo; // Tipo (recieta/despesa)
 
-    @Column
-    private double valor;
+    @Column(name = "VALOR", nullable = false)
+    private double valor; // Valor do lançamento
 
-    @Column
+    @Column(name = "CATEGORIA")
     @Enumerated(EnumType.STRING)
-    private Categoria categoria;
+    private Categoria categoria; // Categoria do lançamento
 
-    public Lancamento(Integer id, String nome, String descricao, Calendar data, Tipo tipo, double valor, Categoria categoria) {
+    @ManyToOne
+    @JoinColumn(name = "grupo_id", nullable = false)
+    @JsonBackReference
+    private Grupo grupo;
+
+    public Lancamento() {
+    }
+
+    public Lancamento(Integer id, String nome, String descricao, LocalDate data, Tipo tipo, double valor, Categoria categoria, Grupo grupo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -42,11 +52,10 @@ public class Lancamento {
         this.tipo = tipo;
         this.valor = valor;
         this.categoria = categoria;
+        this.grupo = grupo;
     }
 
-    public Lancamento() {
-    }
-
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -71,11 +80,11 @@ public class Lancamento {
         this.descricao = descricao;
     }
 
-    public Calendar getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -103,28 +112,38 @@ public class Lancamento {
         this.categoria = categoria;
     }
 
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
-        Lancamento that = (Lancamento) object;
-        return Double.compare(valor, that.valor) == 0 && Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(descricao, that.descricao) && Objects.equals(data, that.data) && tipo == that.tipo && categoria == that.categoria;
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id, nome, descricao, data, tipo, valor, categoria);
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Lancamento{" +
                 "id=" + id +
-                ", nome=" + nome +
-                ", descricao=" + descricao +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
                 ", data=" + data +
                 ", tipo=" + tipo +
                 ", valor=" + valor +
                 ", categoria=" + categoria +
+                ", grupo=" + grupo +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lancamento that = (Lancamento) o;
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(descricao, that.descricao) && Objects.equals(data, that.data) && tipo == that.tipo && Objects.equals(valor, that.valor) && categoria == that.categoria && Objects.equals(grupo, that.grupo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, descricao, data, tipo, valor, categoria, grupo);
     }
 }

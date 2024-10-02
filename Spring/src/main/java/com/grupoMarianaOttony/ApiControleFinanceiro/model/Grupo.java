@@ -29,7 +29,10 @@ public class Grupo {
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao; // descricao do grupo
 
-    // Relacionamento com Pessoa
+    @NotBlank(message = "Saldo Inicial não pode estar vazio.")
+    @Column(name = "SALDO", nullable = false)
+    private double saldo;
+
     @ManyToOne
     @JoinColumn(name = "pessoa_id", nullable = false) // Chave estrangeira para Pessoa
     @JsonBackReference
@@ -39,18 +42,25 @@ public class Grupo {
     @JsonManagedReference
     private List<Lancamento> lancamentos;
 
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Meta> metas;
+
+
     // Construtor vazio
     public Grupo() {}
 
     // Construtor completo
 
 
-    public Grupo(Integer id, String nome, String descricao, Pessoa pessoa, List<Lancamento> lancamentos) {
+    public Grupo(Integer id, String nome, String descricao, double saldo,Pessoa pessoa, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.saldo = saldo;
         this.pessoa = pessoa;
         this.lancamentos = lancamentos;
+        this.metas = metas;
     }
 
     // Getters e Setters
@@ -78,6 +88,14 @@ public class Grupo {
         this.descricao = descricao;
     }
 
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
+    }
+
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -94,14 +112,24 @@ public class Grupo {
         this.lancamentos = lancamentos;
     }
 
+    public List<Meta> getMetas() {
+        return metas;
+    }
+
+    public void setMetas(List<Meta> metas) {
+        this.metas = metas;
+    }
+
     @Override
     public String toString() {
         return "Grupo{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", saldo='"+ saldo + '\'' +
                 ", pessoa=" + pessoa +
                 ", lancamentos=" + lancamentos +
+                ", metas=" + metas +
                 '}';
     }
 
@@ -110,11 +138,11 @@ public class Grupo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Grupo grupo = (Grupo) o;
-        return Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos);
+        return Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(saldo, grupo.saldo) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos) && Objects.equals(metas, grupo.metas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao, pessoa, lancamentos);
+        return Objects.hash(id, nome, descricao, saldo, pessoa, lancamentos, metas);
     }
 }

@@ -3,6 +3,8 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -22,7 +24,10 @@ public class GrupoDTO {
 
     private Integer pessoaId;
 
+    private double saldo;
+
     private List<Lancamento> lancamentos;
+    private List<Meta> metas;
 
     // Construtor vazio
     public GrupoDTO() {}
@@ -30,12 +35,14 @@ public class GrupoDTO {
     // Construtor completo
 
 
-    public GrupoDTO(Integer id, String nome, String descricao, Integer pessoaId, List<Lancamento> lancamentos) {
+    public GrupoDTO(Integer id, String nome, String descricao, double saldo, Integer pessoaId, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.pessoaId = pessoaId;
+        this.saldo = saldo;
         this.lancamentos = lancamentos;
+        this.metas = metas;
     }
 
     // Getters e Setters
@@ -71,12 +78,28 @@ public class GrupoDTO {
         this.pessoaId = pessoaId;
     }
 
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
+    }
+
     public List<Lancamento> getLancamentos() {
         return lancamentos;
     }
 
     public void setLancamentos(List<Lancamento> lancamentos) {
         this.lancamentos = lancamentos;
+    }
+
+    public List<Meta> getMetas() {
+        return metas;
+    }
+
+    public void setMetas(List<Meta> metas) {
+        this.metas = metas;
     }
 
     @Override
@@ -87,6 +110,7 @@ public class GrupoDTO {
                 ", descricao='" + descricao + '\'' +
                 ", pessoaId=" + pessoaId +
                 ", lancamentos=" + lancamentos +
+                ", metas=" + metas +
                 '}';
     }
 }
