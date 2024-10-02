@@ -6,6 +6,7 @@ import com.grupoMarianaOttony.ApiControleFinanceiro.dto.GrupoDTO;
 import com.grupoMarianaOttony.ApiControleFinanceiro.mappers.GrupoMapper;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
 import com.grupoMarianaOttony.ApiControleFinanceiro.service.GrupoService;
 
@@ -36,7 +37,8 @@ public class GrupoController {
         // Converte o DTO para a entidade
         Pessoa pessoa = pessoaService.findById(id);
         List<Lancamento> lancamentos = new ArrayList<Lancamento>();
-        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, lancamentos); // grupo ao ser criado não possui lançamentos
+        List<Meta> metas = new ArrayList<Meta>();
+        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, lancamentos, metas); // grupo ao ser criado não possui lançamentos
 
         return this.grupoService.save(grupo);
     }

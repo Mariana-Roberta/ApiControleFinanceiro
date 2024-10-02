@@ -24,6 +24,8 @@ import { MessageService } from 'primeng/api';
 })
 export class PessoaFormularioComponent {
 
+  errorMessage: string = '';
+
   // Define o objeto pessoa com valores padrão
   pessoa: Pessoa = {
     id: 0,
@@ -52,47 +54,14 @@ export class PessoaFormularioComponent {
   }
 
   addPesssoa() {
-    if(!this.pessoa.nome || this.pessoa.nome.trim().length == 0) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o nome deve ser informado.' });
-      return;
-    }
-    if (this.pessoa.nome && this.pessoa.nome.length < 2) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o nome deve conter no mínimo 2 caracteres.' });
-        return; // Interrompe a execução se a validação falhar
-      }
-
-    if(!this.pessoa.cpf || this.pessoa.cpf.trim().length == 0) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o cpf deve ser informado.' });
-      return;
-    }
-    if (this.pessoa.cpf && this.pessoa.cpf.length < 14) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o cpf deve conter 11 dígitos.' });
-      return;
-    }
-    if(!this.pessoa.email || this.pessoa.email.trim().length == 0) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o email deve ser informado.' });
-      return;
-    }
-    if (this.pessoa.email && this.pessoa.email.length < 11) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o email deve conter no mínimo 11 caracteres.' });
-      return;
-    }
-    if(!this.pessoa.telefone || this.pessoa.telefone.trim().length == 0) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o telefone deve ser informado.' });
-      return;
-    }
-    if (this.pessoa.telefone && this.pessoa.telefone.length < 11) {
-      this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: 'Por favor, o telefone deve conter no mínimo 10 dígitos [(XX) XXXX-XXXX ou (XX) XXXXX-XXXX].' });
-      return;
-    }
 
     this._pessoaHttpService.addPesssoa(this.pessoa)
       .subscribe({
         next: (value) => {
           this._router.navigate(['/pessoa/pessoa-listagem'])
         }, error: (err) => {
-          console.error("Falha ao adicionar pessoa", err)
-          alert("Falha ao adicionar pessoa")
+          this.errorMessage = err;
+          this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: this.errorMessage });
         }
       });
   }

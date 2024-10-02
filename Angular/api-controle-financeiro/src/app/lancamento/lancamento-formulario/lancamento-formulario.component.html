@@ -1,6 +1,7 @@
 <div class="formulario-container">
     <h2>Formulário de Cadastro de Lançamento</h2>
     <form (ngSubmit)="onSubmit()" class="formulario-form">
+        <p-toast />
 
         <label for="nome">Nome:</label>
         <input id="nome" pInputText [(ngModel)]="lancamento.nome" name="nome">
