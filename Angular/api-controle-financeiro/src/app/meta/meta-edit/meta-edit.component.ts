@@ -24,7 +24,7 @@ meta: Meta = {
   id: 0,
   tipo: '',
   valor: 0
-  //NÃO COLOQUEI GRUPOS, NAO SEI SE TENHO
+  
 }
 
 constructor(
