@@ -49,6 +49,30 @@ public class LancamentoController {
 
         return this.lancamentoService.save(lancamento);
     }
+    // LANÇAMENTO COM ADIÇÃO DO VALOR AO SALDO DO GRUPO
+    /*
+    // O ID É DO GRUPO QUE PASSA COMO PATHVARIABLE PARA PODER ENCONTRAR O GRUPO ALTERAR O SALDO E SALVÁ-LO NOVAMENTE
+    public Lancamento criarLancamento(@PathVariable Integer id, @Valid @RequestBody LancamentoDTO lancamentoDTO) {
+        // Converte o DTO para a entidade
+        Grupo grupo = grupoService.findById(id);
+        float saldoAtual = grupo.getSaldo();
+
+        if (lancamentoDTO.getValor() <= 0) {
+            throw new InvalidSaldoException("Valor do lançamento é inválido. Informe um valor maior que zero.");
+        }
+
+        if (lancamentoDTO.getTipo() == Tipo.RECEITA) grupo.setSaldo(saldoAtual += lancamentoDTO.getValor());
+        if (lancamentoDTO.getTipo() == Tipo.DESPESA) grupo.setSaldo(saldoAtual -= lancamentoDTO.getValor());
+
+        if (grupo.getSaldo() < 0) {
+            throw new InvalidSaldoException("O saldo não pode ser menor que 0.");
+        }
+        grupoService.save(grupo); // Salva o novo saldo do grupo
+
+        Lancamento lancamento = LancamentoMapper.toEntity(lancamentoDTO, grupo);
+        return this.lancamentoService.save(lancamento);
+    }
+     */
 
     @DeleteMapping(value = "/{id}")
     public void delete(Integer id){
