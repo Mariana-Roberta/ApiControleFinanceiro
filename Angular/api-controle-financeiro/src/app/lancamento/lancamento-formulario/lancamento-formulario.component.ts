@@ -10,26 +10,27 @@ import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {DropdownModule} from 'primeng/dropdown';
 import {Categoria} from "../../model/categoria";
 import {NgForOf} from "@angular/common";
-/*
-interface CategoriaOption {
-    label: string;
-    value: Categoria;
-}
-*/
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+
 @Component({
   selector: 'app-lancamento-formulario',
   standalone: true,
-    imports: [
-        Button,
-        FormsModule,
-        InputTextModule,
-        DropdownModule,
-        NgForOf
-    ],
+  imports: [
+    Button,
+    FormsModule,
+    InputTextModule,
+    DropdownModule,
+    NgForOf,
+    ToastModule
+  ],
+  providers: [MessageService],
   templateUrl: './lancamento-formulario.component.html',
   styleUrl: './lancamento-formulario.component.css'
 })
 export class LancamentoFormularioComponent implements OnInit {
+
+  errorMessage: string = '';
 
     lancamento: Lancamento = {
         id: 0,
@@ -55,7 +56,8 @@ export class LancamentoFormularioComponent implements OnInit {
     constructor(private _router: Router,
                 private lancamentoHttpService: LancamentoHttpService,
                 private route: ActivatedRoute,
-                private grupoFormService: GrupoFormService) {
+                private grupoFormService: GrupoFormService,
+                private messageService: MessageService) {
     }
 
     ngOnInit() {
@@ -99,6 +101,8 @@ export class LancamentoFormularioComponent implements OnInit {
                 }, error: (err) => {
                     console.error("Falha ao adicionar lancamento", err)
                     alert("Falha ao adicionar lancamento")
+                  this.errorMessage = err;
+                  this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: this.errorMessage });
                 }
             });
     }

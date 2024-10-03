@@ -1,5 +1,3 @@
-import {Grupo} from "./grupo";
-
 export  interface Pessoa {
   id: number,
   nome: string,

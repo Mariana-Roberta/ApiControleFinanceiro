@@ -4,7 +4,6 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -33,12 +32,11 @@ public class GrupoDTO {
     public GrupoDTO() {}
 
     // Construtor completo
-
-
     public GrupoDTO(Integer id, String nome, String descricao, double saldo, Integer pessoaId, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.saldo = saldo;
         this.pessoaId = pessoaId;
         this.saldo = saldo;
         this.lancamentos = lancamentos;
@@ -108,6 +106,7 @@ public class GrupoDTO {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", saldo='" + saldo + '\'' +
                 ", pessoaId=" + pessoaId +
                 ", lancamentos=" + lancamentos +
                 ", metas=" + metas +

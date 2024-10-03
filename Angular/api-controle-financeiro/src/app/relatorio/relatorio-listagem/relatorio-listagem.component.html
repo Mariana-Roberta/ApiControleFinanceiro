@@ -1,0 +1,63 @@
+<p-tabView>
+    <p-tabPanel header="Mensal">
+        <h3>Não foi possível implementar. Tentativa comentada no backend.</h3>
+    </p-tabPanel>
+
+    <p-tabPanel header="Por Grupos">
+        <div style="margin-top: 30px; margin-bottom: 30px">
+            <p-button label="Gerar Relatório" [raised]="true" (click)="gerarRelatorioPorGrupo()" />
+        </div>
+
+        <p-panel header="Relatórios por Grupos">
+            <div *ngFor="let grupo of grupos" style="margin-bottom: 40px; padding: 20px; background-color: mintcream">
+                <h3 style="color:teal; font-size: 24px">{{ grupo.nome }}</h3> <!-- Nome do grupo -->
+                <p-table [value]="relatoriosPorGrupo[grupo.id]" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-relatorio>
+                        <tr>
+                            <td>{{ relatorio.data }}</td>
+                            <td>{{ relatorio.descricao }}</td>
+                            <td>{{ relatorio.categoria }}</td>
+                            <td>{{ relatorio.valor }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </p-panel>
+    </p-tabPanel>
+
+    <p-tabPanel header="Por Categorias">
+        <div style="margin-top: 30px; margin-bottom: 30px">
+            <p-button label="Gerar Relatório" [raised]="true" (click)="gerarRelatorioPorCategoria()" />
+        </div>
+
+        <p-panel header="Relatórios por Categorias">
+            <div *ngFor="let categoria of categorias" style="margin-bottom: 40px; padding: 20px; background-color: mintcream">
+                <h3 style="color:teal; font-size: 24px">{{ categoria }}</h3> <!-- Nome da categoria -->
+                <p-table [value]="relatoriosPorCategoria[categoria]" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-relatorio>
+                        <tr>
+                            <td>{{ relatorio.data }}</td>
+                            <td>{{ relatorio.descricao }}</td>
+                            <td>{{ relatorio.valor }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </p-panel>
+    </p-tabPanel>
+</p-tabView>

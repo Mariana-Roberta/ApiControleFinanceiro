@@ -5,15 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1421d67-2598-4dcd-b6c4-915e258cc9bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/model/relatorio.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/relatorio/relatorio-listagem/relatorio-listagem.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/relatorio/relatorio-listagem/relatorio-listagem.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/relatorio/relatorio-listagem/relatorio-listagem.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/relatorio/relatorio-listagem/relatorio-listagem.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/services/relatorio/relatorio-http.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/services/relatorio/relatorio-http.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/RelatorioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/dto/RelatorioDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/exceptions/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/exceptions/InvalidSaldoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/exceptions/PessoaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/validator/CpfValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/validator/EmailValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/validator/PhoneValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Grupo/Captura de tela 2024-10-02 200223.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Grupo/Captura de tela 2024-10-02 200323.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Grupo/Captura de tela 2024-10-02 200501.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Lancamento/Captura de tela 2024-10-02 200139.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Lancamento/Captura de tela 2024-10-02 200338.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Lancamento/Captura de tela 2024-10-02 200524.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Meta/Captura de tela 2024-10-02 200050.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Pessoa/Captura de tela 2024-10-02 200242.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Pessoa/Captura de tela 2024-10-02 200302.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Pessoa/Captura de tela 2024-10-02 200440.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Relatorio/Captura de tela 2024-10-03 175601.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Relatorio/Captura de tela 2024-10-03 175613.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Relatorio/Captura de tela 2024-10-03 175622.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Relatorio/Captura de tela 2024-10-03 175632.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Telas/Relatorio/Captura de tela 2024-10-03 175653.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/lancamento/lancamento-formulario/lancamento-formulario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/lancamento/lancamento-formulario/lancamento-formulario.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/lancamento/lancamento-formulario/lancamento-formulario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/lancamento/lancamento-formulario/lancamento-formulario.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/model/pessoa.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/model/pessoa.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-edit/pessoa-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-edit/pessoa-edit.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-formulario/pessoa-formulario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-formulario/pessoa-formulario.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-formulario/pessoa-formulario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-formulario/pessoa-formulario.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-listagem/pessoa-listagem.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-listagem/pessoa-listagem.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-listagem/pessoa-listagem.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-listagem/pessoa-listagem.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-visualizacao/pessoa-visualizacao.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-visualizacao/pessoa-visualizacao.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-visualizacao/pessoa-visualizacao.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-visualizacao/pessoa-visualizacao.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-visualizacao/pessoa-visualizacao.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/pessoa/pessoa-visualizacao/pessoa-visualizacao.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/services/lancamento/lancamento-http.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/services/lancamento/lancamento-http.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/services/pessoa/pessoa-http.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular/api-controle-financeiro/src/app/services/pessoa/pessoa-http.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/GrupoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/GrupoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/LancamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/LancamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/controller/PessoaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/dto/GrupoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/dto/GrupoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/model/Grupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/model/Grupo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/model/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/model/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/repository/GrupoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/repository/GrupoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/repository/LancamentoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/repository/LancamentoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/service/GrupoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/service/GrupoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/service/PessoaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupoMarianaOttony/ApiControleFinanceiro/service/PessoaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +77,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -49,20 +89,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ApiControleFinanceiroApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Mariana&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Aluno/Documents/GitHub/ApiControleFinanceiro/Angular/api-controle-financeiro&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ApiControleFinanceiroApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging Ottony",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/PC/Documents/GitHub/ApiControleFinanceiro/Spring",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.ApiControleFinanceiroApplication">
     <configuration name="ApiControleFinanceiroApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.grupoMarianaOttony.ApiControleFinanceiro.ApiControleFinanceiroApplication" />
@@ -94,8 +140,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -107,7 +153,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726614742450</updated>
+      <workItem from="1727901041505" duration="1277000" />
+      <workItem from="1727989258105" duration="33000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

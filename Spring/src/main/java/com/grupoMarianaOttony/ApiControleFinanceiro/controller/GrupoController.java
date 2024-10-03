@@ -3,11 +3,8 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.controller;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.dto.GrupoDTO;
-import com.grupoMarianaOttony.ApiControleFinanceiro.dto.PessoaDTO;
 import com.grupoMarianaOttony.ApiControleFinanceiro.mappers.GrupoMapper;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
 import com.grupoMarianaOttony.ApiControleFinanceiro.service.GrupoService;
 
@@ -16,9 +13,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/grupo")

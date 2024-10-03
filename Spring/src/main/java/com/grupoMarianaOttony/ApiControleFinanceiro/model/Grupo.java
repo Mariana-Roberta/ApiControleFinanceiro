@@ -33,6 +33,7 @@ public class Grupo {
     @Column(name = "SALDO", nullable = false)
     private double saldo;
 
+    // Relacionamento com Pessoa
     @ManyToOne
     @JoinColumn(name = "pessoa_id", nullable = false) // Chave estrangeira para Pessoa
     @JsonBackReference
@@ -46,13 +47,10 @@ public class Grupo {
     @JsonManagedReference
     private List<Meta> metas;
 
-
     // Construtor vazio
     public Grupo() {}
 
     // Construtor completo
-
-
     public Grupo(Integer id, String nome, String descricao, double saldo,Pessoa pessoa, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
@@ -126,7 +124,7 @@ public class Grupo {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", saldo='"+ saldo + '\'' +
+                ", saldo=" + saldo +
                 ", pessoa=" + pessoa +
                 ", lancamentos=" + lancamentos +
                 ", metas=" + metas +
@@ -138,7 +136,7 @@ public class Grupo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Grupo grupo = (Grupo) o;
-        return Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(saldo, grupo.saldo) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos) && Objects.equals(metas, grupo.metas);
+        return Double.compare(saldo, grupo.saldo) == 0 && Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos) && Objects.equals(metas, grupo.metas);
     }
 
     @Override

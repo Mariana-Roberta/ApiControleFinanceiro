@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Lancamento} from "../../model/lancamento";
 import {Grupo} from "../../model/grupo";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,9 @@ export class LancamentoHttpService {
 
 // Método para adicionar um novo lançamento ao grupo
   addLancamento(lancamento: Lancamento, grupo: Grupo): Observable<Lancamento> {
-    return this.http.post<Lancamento>(`${this.apiUrl}/add/grupo/${grupo.id}`, lancamento);
+    return this.http.post<Lancamento>(`${this.apiUrl}/add/grupo/${grupo.id}`, lancamento).pipe(
+      catchError(this.handleError)
+    );
   }
 
 // Método para obter a lista de todos os lançamentos de um grupo
@@ -41,6 +43,18 @@ export class LancamentoHttpService {
 // Método para remover um lançamento
   deleteLancamento(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Ocorreu um erro desconhecido.';
+    if (error.error instanceof ErrorEvent) {
+      // Erro do lado do cliente
+      errorMessage = `Erro: ${error.error.message}`;
+    } else {
+      // Erro do lado do servidor
+      errorMessage = error.error.message; // A mensagem do Spring Boot será recebida aqui
+    }
+    return throwError(() => errorMessage);
   }
 
 }

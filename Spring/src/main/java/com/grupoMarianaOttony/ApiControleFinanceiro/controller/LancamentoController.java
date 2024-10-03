@@ -1,8 +1,6 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.controller;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.dto.LancamentoDTO;
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.mappers.LancamentoMapper;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
@@ -35,6 +33,30 @@ public class LancamentoController {
         Lancamento lancamento = LancamentoMapper.toEntity(lancamentoDTO, grupo);
         return this.lancamentoService.save(lancamento);
     }
+    // LANÇAMENTO COM ADIÇÃO DO VALOR AO SALDO DO GRUPO
+    /*
+    // O ID É DO GRUPO QUE PASSA COMO PATHVARIABLE PARA PODER ENCONTRAR O GRUPO ALTERAR O SALDO E SALVÁ-LO NOVAMENTE
+    public Lancamento criarLancamento(@PathVariable Integer id, @Valid @RequestBody LancamentoDTO lancamentoDTO) {
+        // Converte o DTO para a entidade
+        Grupo grupo = grupoService.findById(id);
+        float saldoAtual = grupo.getSaldo();
+
+        if (lancamentoDTO.getValor() <= 0) {
+            throw new InvalidSaldoException("Valor do lançamento é inválido. Informe um valor maior que zero.");
+        }
+
+        if (lancamentoDTO.getTipo() == Tipo.RECEITA) grupo.setSaldo(saldoAtual += lancamentoDTO.getValor());
+        if (lancamentoDTO.getTipo() == Tipo.DESPESA) grupo.setSaldo(saldoAtual -= lancamentoDTO.getValor());
+
+        if (grupo.getSaldo() < 0) {
+            throw new InvalidSaldoException("O saldo não pode ser menor que 0.");
+        }
+        grupoService.save(grupo); // Salva o novo saldo do grupo
+
+        Lancamento lancamento = LancamentoMapper.toEntity(lancamentoDTO, grupo);
+        return this.lancamentoService.save(lancamento);
+    }
+     */
 
     @GetMapping("/grupo/{id}")
     public List<Lancamento> obterLancamentoByGrupo(@PathVariable Integer id) {
