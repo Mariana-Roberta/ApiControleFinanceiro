@@ -7,6 +7,7 @@ import {LancamentoFormularioComponent} from "./lancamento/lancamento-formulario/
 import {LancamentoListagemComponent} from "./lancamento/lancamento-listagem/lancamento-listagem.component";
 import {LancamentoVisualizacaoComponent} from "./lancamento/lancamento-visualizacao/lancamento-visualizacao.component";
 import {LancamentoEditComponent} from "./lancamento/lancamento-edit/lancamento-edit.component";
+import {RelatorioListagemComponent} from "./relatorio/relatorio-listagem/relatorio-listagem.component";
 
 export const routes: Routes = [
   { path: 'pessoa/pessoa-formulario', component: PessoaFormularioComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'lancamento/lancamento-listagem', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-listagem/:id', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-visualizacao/:id', component: LancamentoVisualizacaoComponent },
-  { path: 'lancamento/lancamento-edit/:id', component: LancamentoEditComponent }
+  { path: 'lancamento/lancamento-edit/:id', component: LancamentoEditComponent },
+  { path: 'relatorio', component: RelatorioListagemComponent }
 ];

@@ -15,24 +15,29 @@ export class PessoaHttpService {
 
   // Método para adicionar uma nova pessoa à lista
   addPesssoa(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>(this.apiUrl, pessoa).pipe(
+    return this.http.post<Pessoa>(`${this.apiUrl}/save`, pessoa).pipe(
       catchError(this.handleError)
     );
   }
 
   // Método para obter a lista de todas as pessoas
   getPessoas(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(this.apiUrl);
+    return this.http.get<Pessoa[]>(`${this.apiUrl}/findAll`);
   }
 
   // Método para obter uma pessoa pelo ID
   getPessoaById(id: number): Observable<Pessoa> {
-    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
+    return this.http.get<Pessoa>(`${this.apiUrl}/findById/${id}`);
   }
 
   // Método para atualizar uma pessoa
   updatePessoa(pessoa: Pessoa): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${pessoa.id}`, pessoa);
+    return this.http.put<void>(`${this.apiUrl}/update/${pessoa.id}`, pessoa);
+  }
+
+  // Método para deletar uma pessoa
+  deletePessoa(pessoa: Pessoa): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/${pessoa.id}`);
   }
 
   private handleError(error: HttpErrorResponse) {
