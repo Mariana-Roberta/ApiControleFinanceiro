@@ -2,6 +2,7 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.GrupoRepository;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.LancamentoRepository;
@@ -31,10 +32,13 @@ public class LancamentoService {
     }
 
     public Lancamento save(Lancamento lancamento) {
-        double saldo = lancamento.getGrupo().getSaldo();
+        Grupo grupo = lancamento.getGrupo();
+        double saldo = grupo.getSaldo();
         //Modifica o saldo baseado no tipo de lancamento
         if(lancamento.getTipo() == Tipo.DESPESA)saldo = saldo - lancamento.getValor();
         else saldo = saldo + lancamento.getValor();
+        grupo.setSaldo(saldo);
+        lancamento.setGrupo(grupo);
         grupoRepository.save(lancamento.getGrupo());
         return lancamentoRepository.save(lancamento);
     }

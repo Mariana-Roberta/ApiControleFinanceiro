@@ -8,7 +8,7 @@ import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FieldsetModule} from "primeng/fieldset";
 import {Grupo} from "../../model/grupo";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 
 @Component({
   selector: 'app-pessoa-visualizacao',
@@ -37,7 +37,7 @@ export class PessoaVisualizacaoComponent implements OnInit {
 
   constructor(
       private pessoaService: PessoaHttpService,
-      private grupoService: GrupoHttpService,
+      private grupoService: GrupoFormService,
       private route: ActivatedRoute,
       private router: Router,
       private location: Location

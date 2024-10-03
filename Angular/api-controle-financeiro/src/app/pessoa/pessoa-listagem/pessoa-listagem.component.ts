@@ -61,7 +61,7 @@ export class PessoaListagemComponent implements OnInit {
   }
 
   criarNovoGrupo(pessoa: Pessoa) {
-    this.router.navigate(['/grupo/grupo-formulario', pessoa.id]);
+    this.router.navigate(['/grupo/grupo-form', pessoa.id]);
   }
 
   irParaFormulario() {

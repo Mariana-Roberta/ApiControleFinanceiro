@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import {Button} from "primeng/button";
 import {PrimeTemplate} from "primeng/api";
 import {TableModule} from "primeng/table";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {Grupo} from "../../model/grupo";
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
+import {Pessoa} from "../../model/pessoa"
+import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 
 @Component({
   selector: 'app-grupo-listagem',
@@ -16,20 +18,38 @@ import {GrupoFormService} from "../../services/grupo/grupo-form.service";
   styleUrl: './grupo-listagem.component.css'
 })
 export class GrupoListagemComponent {
+  pessoa: Pessoa = {
+    id:0,
+    nome: 'indefinida',
+    cpf: '',
+    email: '',
+    telefone: ''
+  };
   gruposList: Grupo[] = [];
 
   constructor(private grupoFormService: GrupoFormService,
-              private router: Router) {}
+              private router: Router, private pessoaService: PessoaHttpService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.grupoFormService.getGrupos().subscribe(
-      (dados: Grupo[]) => {
-        this.gruposList = dados;
-      },
-      (error) => {
-        console.error('Erro ao carregar grupos', error);
-      }
-    );
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.pessoaService.getPessoaById(Number(id)).subscribe(
+          (dados: Pessoa) => {
+            this.pessoa = dados;
+            this.grupoFormService.getGruposByPessoaId(this.pessoa.id).subscribe(
+                (allGrupos: Grupo[]) => {
+                  this.gruposList = allGrupos;
+                },
+                (error) => {
+                  console.error('Erro ao carregar os grupos', error);
+                }
+            );
+          },
+          (error) => {
+            console.error('Erro ao carregar dados da pessoa', error);
+          }
+      );
+    }
   }
 
   editarGrupo(grupo: Grupo) {
@@ -41,7 +61,7 @@ export class GrupoListagemComponent {
   }
 
   novoGrupo(){
-    this.router.navigate(['/grupo/grupo-form']);
+    this.router.navigate(['/grupo/grupo-form', this.pessoa.id]);
   }
 
   viewMeta(){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf} from "@angular/common";
 import {Pessoa} from "../../model/pessoa"
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {Grupo} from "../../model/grupo"
@@ -9,11 +10,14 @@ import {Button} from "primeng/button";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {FieldsetModule} from "primeng/fieldset";
 
 @Component({
   selector: 'app-grupo-form',
   standalone: true,
   imports: [
+    FieldsetModule,
+    NgIf,
     Button,
     FormsModule,
     InputTextModule,
@@ -25,7 +29,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class GrupoFormComponent implements OnInit {
   pessoa: Pessoa = {
     id:0,
-    nome: '',
+    nome: 'indefinida',
     cpf: '',
     email: '',
     telefone: ''
@@ -36,19 +40,18 @@ export class GrupoFormComponent implements OnInit {
         descricao : '',
         saldo : 0,
         pessoa : undefined
-      }
+      };
 
   constructor(
     private pessoaService: PessoaHttpService,
     private route: ActivatedRoute,
     private grupoFormService: GrupoFormService,
     private router: Router,
-    private location: Location,
     private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
-    const pessoaIdParam = this.route.snapshot.paramMap.get('pessoaId');
+   const pessoaIdParam = this.route.snapshot.paramMap.get('id');
     if (pessoaIdParam) {
       this.pessoaService.getPessoaById(Number(pessoaIdParam)).subscribe(
         (dados: Pessoa) => {
@@ -61,7 +64,7 @@ export class GrupoFormComponent implements OnInit {
   }
 
     onSubmit() {
-          this.addGrupo();
+        this.addGrupo();
         }
 
         addGrupo() {
@@ -80,10 +83,11 @@ export class GrupoFormComponent implements OnInit {
                   });
             return; // Interrompe a execução se a validação falhar
           }
-          this.grupoFormService.createGrupo(this.grupo, this.pessoa)
+
+    this.grupoFormService.createGrupo(this.grupo, this.pessoa)
       .subscribe({
         next: (value) => {
-          this.router.navigate(['/grupo/grupo-listagem'])
+          this.router.navigate(['/grupo/grupo-listagem/pessoa/', this.pessoa.id])
         }, error: (err) => {
           console.error("Falha ao adicionar grupo", err)
           alert("Falha ao adicionar grupo")

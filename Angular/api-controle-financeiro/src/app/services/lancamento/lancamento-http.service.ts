@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Lancamento} from "../../models/lancamento";
-import {Grupo} from "../../models/grupo";
+import {Lancamento} from "../../model/lancamento";
+import {Grupo} from "../../model/grupo";
 import {Observable} from "rxjs";
 
 @Injectable({

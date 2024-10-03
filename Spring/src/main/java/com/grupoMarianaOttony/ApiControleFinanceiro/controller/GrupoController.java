@@ -3,6 +3,7 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.controller;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.dto.GrupoDTO;
+import com.grupoMarianaOttony.ApiControleFinanceiro.dto.PessoaDTO;
 import com.grupoMarianaOttony.ApiControleFinanceiro.mappers.GrupoMapper;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
@@ -13,8 +14,6 @@ import com.grupoMarianaOttony.ApiControleFinanceiro.service.GrupoService;
 import com.grupoMarianaOttony.ApiControleFinanceiro.service.PessoaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -32,13 +31,13 @@ public class GrupoController {
     @Autowired
     private PessoaService pessoaService;
 
-    @PostMapping("/{id}")
+    @PostMapping("/add/{id}")
     public Grupo criarGrupo(@PathVariable Integer id, @Valid @RequestBody GrupoDTO grupoDTO) {
         // Converte o DTO para a entidade
         Pessoa pessoa = pessoaService.findById(id);
-        List<Lancamento> lancamentos = new ArrayList<Lancamento>();
-        List<Meta> metas = new ArrayList<Meta>();
-        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, lancamentos, metas); // grupo ao ser criado não possui lançamentos
+        //List<Lancamento> lancamentos = new ArrayList<Lancamento>();
+        //List<Meta> metas = new ArrayList<Meta>();
+        Grupo grupo = GrupoMapper.toEntity(grupoDTO, pessoa, null, null); // grupo ao ser criado não possui lançamentos
 
         return this.grupoService.save(grupo);
     }
@@ -56,7 +55,7 @@ public class GrupoController {
         // Atualiza os dados do grupo existente com os dados do DTO
         grupoExistente.setNome(grupoDTO.getNome());
         grupoExistente.setDescricao(grupoDTO.getDescricao());
-
+        grupoExistente.setSaldo(grupoDTO.getSaldo());
         return this.grupoService.save(grupoExistente);
     }
 
@@ -68,8 +67,8 @@ public class GrupoController {
         grupoService.deleteById(id);
     }
 
-    @GetMapping
-    public List<Grupo> listarGrupos() {
-        return this.grupoService.findAll();
+    @GetMapping("/pessoa/{id}")
+    public List<Grupo> listarGrupos(@PathVariable Integer id) {
+        return this.grupoService.findAllByPessoaId(id);
     }
 }

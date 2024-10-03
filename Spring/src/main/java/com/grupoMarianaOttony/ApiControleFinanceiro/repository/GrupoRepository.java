@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GrupoRepository extends JpaRepository<Grupo, Integer> {
-    List<Grupo> findAllByPessoa(Pessoa pessoa);
+    List<Grupo> findAllByPessoaId(Integer id);
 }

@@ -7,7 +7,7 @@ import {PaginatorModule} from "primeng/paginator";
 import {Pessoa} from "../../model/pessoa";
 import {Grupo} from "../../model/grupo";
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Lancamento} from "../../model/lancamento";
 import {Categoria} from "../../model/categoria";
@@ -41,7 +41,9 @@ export class LancamentoEditComponent implements OnInit{
     grupo: Grupo = {
         id: 0,
         nome: '',
-        descricao: ''
+        descricao: '',
+        saldo: 0,
+        pessoa: undefined
     };
 
     categorias: { label: string; value: Categoria }[] = [];  // Array de opções para o dropdown

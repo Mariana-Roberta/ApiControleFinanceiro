@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {CurrencyPipe, DatePipe, Location, NgIf} from "@angular/common";
 import {Button} from "primeng/button";
 import {TableModule} from "primeng/table";
-import {Grupo} from "../../models/grupo";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {Grupo} from "../../model/grupo";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LancamentoHttpService} from "../../services/lancamento/lancamento-http.service";
 import {FieldsetModule} from "primeng/fieldset";
@@ -29,10 +29,12 @@ export class GrupoVisualizacaoComponent {
   grupo: Grupo = {
     id: 0,
     nome: '',
-    descricao: ''
+    descricao: '',
+    saldo: 0,
+    pessoa: undefined
   };
 
-  constructor(private grupoHttpService: GrupoHttpService,
+  constructor(private grupoFormService: GrupoFormService,
               private route: ActivatedRoute,
               private router: Router,
               private location: Location) {}
@@ -41,7 +43,7 @@ export class GrupoVisualizacaoComponent {
     // Obtém o id da pessoa da rota
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.grupoHttpService.getGrupoById(Number(id)).subscribe(
+      this.grupoFormService.getGrupoById(Number(id)).subscribe(
           (dados: Grupo) => {
             this.grupo = dados;
           },

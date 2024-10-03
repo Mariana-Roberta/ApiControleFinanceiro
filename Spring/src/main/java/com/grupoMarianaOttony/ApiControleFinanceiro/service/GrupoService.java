@@ -24,4 +24,6 @@ public class GrupoService {
     public Grupo update(Grupo grupo) { return grupoRepository.save(grupo); }
 
     public void deleteById(Integer id) { grupoRepository.deleteById(id); }
+
+    public List<Grupo> findAllByPessoaId(Integer id){ return grupoRepository.findAllByPessoaId(id); }
 }

@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LancamentoHttpService} from "../../services/lancamento/lancamento-http.service";
 import {Lancamento} from "../../model/lancamento";
 import {Grupo} from "../../model/grupo";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {DropdownModule} from 'primeng/dropdown';
 import {Categoria} from "../../model/categoria";
 import {NgForOf} from "@angular/common";
@@ -44,7 +44,9 @@ export class LancamentoFormularioComponent implements OnInit {
     grupo: Grupo = {
         id: 0,
         nome: '',
-        descricao: ''
+        descricao: '',
+        saldo: 0,
+        pessoa: undefined
     };
 
     categorias: { label: string; value: Categoria }[] = [];  // Array de opções para o dropdown
@@ -53,14 +55,14 @@ export class LancamentoFormularioComponent implements OnInit {
     constructor(private _router: Router,
                 private lancamentoHttpService: LancamentoHttpService,
                 private route: ActivatedRoute,
-                private grupoHttpService: GrupoHttpService) {
+                private grupoFormService: GrupoFormService) {
     }
 
     ngOnInit() {
         // Obtém o id da pessoa da rota
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
-            this.grupoHttpService.getGrupoById(Number(id)).subscribe(
+            this.grupoFormService.getGrupoById(Number(id)).subscribe(
                 (dados: Grupo) => {
                     this.grupo = dados;
                 },
@@ -93,10 +95,10 @@ export class LancamentoFormularioComponent implements OnInit {
         this.lancamentoHttpService.addLancamento(this.lancamento, this.grupo)
             .subscribe({
                 next: (value) => {
-                    this._router.navigate(['/pessoa/pessoa-listagem'])
+                    this._router.navigate(['lancamento/lancamento-listagem'])
                 }, error: (err) => {
-                    console.error("Falha ao adicionar pessoa", err)
-                    alert("Falha ao adicionar pessoa")
+                    console.error("Falha ao adicionar lancamento", err)
+                    alert("Falha ao adicionar lancamento")
                 }
             });
     }

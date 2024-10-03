@@ -14,12 +14,12 @@ export class GrupoFormService {
 
   // Criar um novo grupo
   createGrupo(grupo: Grupo, pessoa: Pessoa): Observable<Grupo> {
-    return this.http.post<Grupo>(`${this.apiUrl}/${pessoa.id}`, grupo);
+    return this.http.post<Grupo>(`${this.apiUrl}/add/${pessoa.id}`, grupo);
   }
 
   // Obter todos os grupos
-  getGrupos(): Observable<Grupo[]> {
-    return this.http.get<Grupo[]>(this.apiUrl);
+  getGrupos(pessoa: Pessoa): Observable<Grupo[]> {
+    return this.http.get<Grupo[]>(`${this.apiUrl}/${pessoa.id}`);
   }
 
   // Obter um grupo por ID

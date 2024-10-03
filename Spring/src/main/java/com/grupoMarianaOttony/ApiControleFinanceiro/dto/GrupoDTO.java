@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GrupoDTO {
 
-    private Integer id;
+    private Integer id = 0;
 
     @NotBlank(message = "Nome do grupo não pode ser vazio")
     @Size(min = 3, max = 50, message = "Nome do grupo deve ter entre 3 e 50 caracteres")
