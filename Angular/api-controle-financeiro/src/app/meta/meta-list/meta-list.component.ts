@@ -49,6 +49,9 @@ export class MetaListComponent implements OnInit {
     this.metaHttpService.getMeta().subscribe(
     (dados: Meta[]) => {
       this.metas = dados;
+    },
+    (error) => {
+      console.error('Erro ao carregar metas', error);
     }
   )
 }

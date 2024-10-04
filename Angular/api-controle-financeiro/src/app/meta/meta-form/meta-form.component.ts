@@ -5,10 +5,9 @@ import {Form, FormsModule} from "@angular/forms";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import { NgForm } from '@angular/forms';
 import { MetaService } from '../../services/meta/meta.service';
 import { MetaHttpService } from '../../services/meta/meta-http.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-meta-form',
@@ -19,10 +18,13 @@ import { MetaHttpService } from '../../services/meta/meta-http.service';
     InputTextModule,
     FormsModule
   ],
+  providers: [MessageService],
   templateUrl: './meta-form.component.html',
   styleUrls: ['./meta-form.component.css']
 })
 export class MetaFormComponent {
+
+  errorMessage: string = '';
 
   meta : Meta = {
     id: 0,
@@ -32,8 +34,8 @@ export class MetaFormComponent {
 
   constructor(private _metaService: MetaService,
               private _router: Router,
+              private messageService: MessageService,   
               private _metaHttpService: MetaHttpService){
-
               }
 
 
