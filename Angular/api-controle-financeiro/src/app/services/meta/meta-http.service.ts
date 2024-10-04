@@ -2,6 +2,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Meta } from "../../model/meta";
 import { catchError, Observable, throwError } from "rxjs";
+import { Grupo } from "../../model/grupo";
+import { group } from "console";
 
 
 
@@ -18,8 +20,8 @@ export class MetaHttpService{
 
   }
 
-  addMeta(meta: Meta): Observable<Meta>{
-    return this.http.post<Meta>(`${this.apiUrl}/save`, meta).pipe(catchError(this.handleError))
+  addMeta(meta: Meta, grupo: Grupo): Observable<Meta>{
+    return this.http.post<Meta>(`${this.apiUrl}/save/${grupo.id}`, meta).pipe(catchError(this.handleError))
   }
 
   getMeta(): Observable<Meta[]>{

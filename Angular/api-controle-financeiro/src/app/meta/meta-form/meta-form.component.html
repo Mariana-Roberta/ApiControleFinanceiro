@@ -8,7 +8,14 @@
 <input id="valor" pInputText [(ngModel)]="meta.valor" name="valor">
 
 <label for="tipo">Tipo:</label>
-<input id="tipo" pInputText [(ngModel)]="meta.tipo" name="tipo">
+        <select [(ngModel)]="tipoSelecionado" name="tipo" style="font-size: 16px; padding: 8px;">
+            <option *ngFor="let categoria of categorias" [value]="categoria.value">
+                {{ tipo.label }}
+            </option>
+        </select>
+
+
+
 
 
 <p-button label="Salvar" [raised]="true" type="submit"></p-button>
