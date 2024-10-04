@@ -78,8 +78,8 @@ export class GrupoFormComponent implements OnInit {
             return; // Interrompe a execução se a validação falhar
           }
       
-          if (this.grupo.descricao && this.grupo.descricao.length < 10) {
-            this.snackBar.open('Por favor, insira uma descrição de grupo com pelo menos 10 caracteres.', 'Fechar', {
+          if (!this.grupo.descricao) {
+            this.snackBar.open('Por favor, insira uma descrição de grupo.', 'Fechar', {
                     duration: 3000 // Duração em milissegundos
                   });
             return; // Interrompe a execução se a validação falhar

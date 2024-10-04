@@ -3,7 +3,6 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import jakarta.persistence.*;
-import org.hibernate.dialect.TiDBDialect;
 
 import java.util.Objects;
 

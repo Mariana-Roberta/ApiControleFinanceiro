@@ -72,6 +72,11 @@ export class GrupoListagemComponent {
     this.router.navigate(['/lancamento/lancamento-formulario', grupo.id])
   }
 
+  verLancamentos(grupo: Grupo) {
+    this.router.navigate(['/lancamento/lancamento-listagem', grupo.id]);
+  }
+
+
   voltar() {
     this.location.back(); // Volta para a página anterior no histórico
   }
