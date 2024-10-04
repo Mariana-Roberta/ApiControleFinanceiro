@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Button} from "primeng/button";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
-import {Pessoa} from "../../model/pessoa";
 import {Grupo} from "../../model/grupo";
-import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
@@ -21,7 +19,6 @@ import {Location} from "@angular/common";
   styleUrl: './grupo-edit.component.css'
 })
 export class GrupoEditComponent implements OnInit {
-
     grupo: Grupo = {
         id: 0,
         nome: '',
@@ -68,4 +65,7 @@ export class GrupoEditComponent implements OnInit {
             });
     }
 
+    voltar() {
+        this.location.back(); // Volta para a página anterior no histórico
+      }
 }

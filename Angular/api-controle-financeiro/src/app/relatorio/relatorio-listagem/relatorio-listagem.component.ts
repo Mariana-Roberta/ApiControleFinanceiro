@@ -8,7 +8,7 @@ import {RadioButtonModule} from "primeng/radiobutton";
 import {FormsModule} from "@angular/forms";
 import {RelatorioHttpService} from "../../services/relatorio/relatorio-http.service";
 import {Relatorio} from "../../model/relatorio";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {Grupo} from "../../model/grupo";
 import {Categoria} from "../../model/categoria";
 
@@ -40,11 +40,11 @@ export class RelatorioListagemComponent implements OnInit {
   categorias: string[] = Object.values(Categoria); // Obtendo as categorias do enum
 
   constructor(private relatorioService: RelatorioHttpService,
-              private grupoService: GrupoHttpService) {
+              private grupoService: GrupoFormService) {
   }
 
   ngOnInit() {
-    this.grupoService.getGrupos().subscribe(
+    this.grupoService.getGruposAll().subscribe(
         (dados: Grupo[]) => {
           this.grupos = dados;
         },

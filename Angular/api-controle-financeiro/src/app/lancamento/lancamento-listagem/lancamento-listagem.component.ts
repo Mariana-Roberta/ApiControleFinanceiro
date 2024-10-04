@@ -1,17 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {Button} from "primeng/button";
+import { Location, CurrencyPipe, NgIf, NgStyle } from '@angular/common';
 import {PrimeTemplate} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Lancamento} from "../../model/lancamento";
 import {LancamentoHttpService} from "../../services/lancamento/lancamento-http.service";
 import {Grupo} from "../../model/grupo";
+import { PanelModule } from 'primeng/panel';
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 
 @Component({
   selector: 'app-lancamento-listagem',
   standalone: true,
     imports: [
+        PanelModule,
+        CurrencyPipe,
+        NgStyle,
+        NgIf,
         Button,
         PrimeTemplate,
         TableModule
@@ -34,6 +40,7 @@ export class LancamentoListagemComponent implements OnInit {
     constructor(private lancamentoHttpService: LancamentoHttpService,
                 private grupoFormService: GrupoFormService,
                 private route: ActivatedRoute,
+                private location: Location,
                 private router: Router) {}
 
     ngOnInit() {
@@ -82,5 +89,9 @@ export class LancamentoListagemComponent implements OnInit {
 
     verLancamento(lancamentoId: number) {
         this.router.navigate(['/lancamento/lancamento-visualizacao', lancamentoId]);
+    }
+
+    voltar() {
+        this.location.back(); // Volta para a página anterior no histórico
     }
 }

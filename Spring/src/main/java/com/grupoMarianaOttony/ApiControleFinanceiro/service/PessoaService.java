@@ -65,7 +65,7 @@ public class PessoaService {
 
         if (pessoa.getTelefone() == null || pessoa.getTelefone().isEmpty()) {
             throw new PessoaException("O telefone deve ser informado.");
-        } else if (!isValidTelefone(pessoa.getEmail())) {
+        } else if (!isValidTelefone(pessoa.getTelefone())) {
             throw new PessoaException("Telefone inválido. Digite um telefone válido.");
         }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CurrencyPipe, DatePipe, Location, NgIf} from "@angular/common";
+import {CurrencyPipe, DatePipe, Location, NgIf, NgStyle} from "@angular/common";
 import {Button} from "primeng/button";
 import {TableModule} from "primeng/table";
 import {Grupo} from "../../model/grupo";
@@ -18,6 +18,7 @@ import { PanelModule } from 'primeng/panel';
     TableModule,
     DatePipe,
     CurrencyPipe,
+    NgStyle,
     FieldsetModule,
     PanelModule
   ],

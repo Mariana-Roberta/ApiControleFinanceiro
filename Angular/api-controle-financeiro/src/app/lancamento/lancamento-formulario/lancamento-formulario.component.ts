@@ -9,7 +9,7 @@ import {Grupo} from "../../model/grupo";
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {DropdownModule} from 'primeng/dropdown';
 import {Categoria} from "../../model/categoria";
-import {NgForOf} from "@angular/common";
+import {Location, NgForOf} from "@angular/common";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 
@@ -57,6 +57,7 @@ export class LancamentoFormularioComponent implements OnInit {
                 private lancamentoHttpService: LancamentoHttpService,
                 private route: ActivatedRoute,
                 private grupoFormService: GrupoFormService,
+                private location: Location,
                 private messageService: MessageService) {
     }
 
@@ -105,5 +106,9 @@ export class LancamentoFormularioComponent implements OnInit {
                   this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: this.errorMessage });
                 }
             });
+    }
+
+    voltar() {
+        this.location.back(); // Volta para a página anterior no histórico
     }
 }

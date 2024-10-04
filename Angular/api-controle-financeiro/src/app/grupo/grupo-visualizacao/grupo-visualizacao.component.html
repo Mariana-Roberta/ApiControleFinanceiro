@@ -1,9 +1,4 @@
-
-<!--    Menu   -->
-<div class="menu-voltar">
-    <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
-</div>
-<!--    Menu   -->
+<div class="menu-voltar"><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button></div>
 
 <!--    Tudo Sobre Grupo   -->
 <div class="tudo-sobre-grupo" *ngIf="grupo">
@@ -13,17 +8,11 @@
         <p-panel header="Detalhes do Grupo">
             <p><strong>Nome do Grupo:</strong> {{ grupo.nome }}</p>
             <p><strong>Descrição:</strong> {{ grupo.descricao }}</p>
+            <p><strong>Saldo:</strong><span [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{grupo.saldo | currency: 'BRL':'symbol':'1.2-2'}}</span></p>
         </p-panel>
     </div>
-    <!--    Detalhes do Grupo   -->
-
-    <!--    Grupo   -->
-    <div class="info-grupo">
-        <p-panel header="Grupo">
-            <p-button label="Editar Grupo" [raised]="true" (click)="editarGrupo()"></p-button>
-        </p-panel>
-    </div>
-    <!--    Grupo   -->
+    
+    <p-button label="Editar Grupo" [raised]="true" (click)="editarGrupo()"></p-button>
 
     <!--    Lançamentos -->
     <div class="info-lancamentos">

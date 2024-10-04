@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidSaldoException.class)
+    @ExceptionHandler(PessoaException.class)
     public ResponseEntity<ErrorResponse> handlePessoaException(PessoaException ex) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);

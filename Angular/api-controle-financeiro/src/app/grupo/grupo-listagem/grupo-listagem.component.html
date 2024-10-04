@@ -1,4 +1,10 @@
-<p-button label="Novo Grupo" [raised]="true" (click)="novoGrupo()"></p-button>
+<p-button label="Novo Grupo" [raised]="true" (click)="novoGrupo()"></p-button><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+<div *ngIf="pessoa">
+    <p-fieldset legend="Pessoa">
+        <p><strong>Nome:</strong> {{ pessoa.nome }} &nbsp;&nbsp; <strong>CPF:</strong> {{ pessoa.cpf }}</p>
+    </p-fieldset>
+</div>
+
 <p-table [value]="gruposList" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
@@ -13,7 +19,7 @@
         <tr>
             <td>{{ grupo.nome }}</td>
             <td>{{ grupo.descricao }}</td>
-            <td>{{ grupo.saldo }}</td>
+            <td [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{ grupo.saldo | currency: 'BRL':'symbol':'1.2-2' }}</td>
             <td><p-button (click) = "editarGrupo(grupo)">Editar</p-button> <p-button (click) = "verGrupo(grupo)">Ver</p-button> </td>
             <td><p-button (click) = "CriarLancamento(grupo)">Novo Lançamento</p-button></td>
         </tr>

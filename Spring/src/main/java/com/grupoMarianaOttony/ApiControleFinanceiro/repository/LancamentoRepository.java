@@ -17,7 +17,6 @@ import java.time.LocalDate;
 public interface LancamentoRepository extends JpaRepository<Lancamento, Integer> {
     List<Lancamento> findByNomeContainingOrTipoOrDataOrCategoria(String nome, Tipo tipo, LocalDate data, Categoria categoria);
     List<Lancamento> findAllByGrupoId(Integer id);
-    List<Lancamento> findByNameContainingOrType(String nome, Tipo tipo, Calendar data, Categoria categoria);
 
     // Busca lançamentos por mês e ano
     //List<Lancamento> findByMesAndAno(int mes, int ano);

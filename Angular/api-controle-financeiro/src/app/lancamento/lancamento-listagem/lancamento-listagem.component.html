@@ -1,4 +1,14 @@
+<p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
 <p-button label="Novo Lançamento" [raised]="true" ></p-button>
+<div class="tudo-sobre-grupo" *ngIf="grupo">
+
+    <!--    Detalhes do Grupo   -->
+    <div class="detalhes-grupo">
+        <p-panel header="Detalhes do Grupo">
+            <p><strong>Nome do Grupo:</strong> {{ grupo.nome }} &nbsp;&nbsp;&nbsp; <strong>Saldo:</strong>&nbsp;<span [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{grupo.saldo | currency: 'BRL':'symbol':'1.2-2'}}</span></p>
+        </p-panel>
+    </div>
+</div>
 <p-table [value]="lancamentos" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
@@ -17,7 +27,7 @@
             <td>{{ lancamento.descricao }}</td>
             <td>{{ lancamento.data }}</td>
             <td>{{ lancamento.tipo }}</td>
-            <td>{{ lancamento.valor }}</td>
+            <td>{{lancamento.valor | currency: 'BRL':'symbol':'1.2-2'}}</td>
             <td>{{ lancamento.categoria }}</td>
             <td><p-button (click)="editarLancamento(lancamento.id)" >Editar</p-button> <p-button (click)="verLancamento(lancamento.id)" >Ver</p-button> </td>
         </tr>

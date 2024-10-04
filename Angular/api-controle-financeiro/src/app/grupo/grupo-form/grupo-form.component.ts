@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgIf} from "@angular/common";
+import { NgIf, Location} from "@angular/common";
 import {Pessoa} from "../../model/pessoa"
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
 import {Grupo} from "../../model/grupo"
@@ -29,7 +29,7 @@ import {FieldsetModule} from "primeng/fieldset";
 export class GrupoFormComponent implements OnInit {
   pessoa: Pessoa = {
     id:0,
-    nome: 'indefinida',
+    nome: '',
     cpf: '',
     email: '',
     telefone: ''
@@ -47,7 +47,8 @@ export class GrupoFormComponent implements OnInit {
     private route: ActivatedRoute,
     private grupoFormService: GrupoFormService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location
   ){}
 
   ngOnInit(): void {
@@ -93,5 +94,9 @@ export class GrupoFormComponent implements OnInit {
           alert("Falha ao adicionar grupo")
         }
       });
+    }
+
+    voltar() {
+      this.location.back(); // Volta para a página anterior no histórico
     }
 }

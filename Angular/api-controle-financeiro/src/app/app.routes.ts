@@ -21,6 +21,7 @@ export const routes: Routes = [
   //{ path: 'grupo/grupo-form', component: GrupoFormComponent },
   { path: 'grupo/grupo-form/:id', component: GrupoFormComponent },
   { path: 'grupo/grupo-listagem/pessoa/:id', component: GrupoListagemComponent },
+  { path: 'grupo/grupo-listagem', component: GrupoListagemComponent },
   { path: 'grupo/grupo-visualizacao/:id', component: GrupoVisualizacaoComponent },
   { path: 'grupo/grupo-edit/:id', component: GrupoEditComponent },
   { path: 'lancamento/lancamento-formulario/:id', component: LancamentoFormularioComponent },
@@ -28,6 +29,6 @@ export const routes: Routes = [
   { path: 'lancamento/lancamento-listagem/:id', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-visualizacao/:id', component: LancamentoVisualizacaoComponent },
   { path: 'lancamento/lancamento-edit/:id', component: LancamentoEditComponent },
-  { path: '', redirectTo: 'pessoa-formulario', pathMatch: 'full' },
+  { path: '', redirectTo: 'pessoa/pessoa-listagem', pathMatch: 'full' },
   { path: 'relatorio', component: RelatorioListagemComponent }
 ];

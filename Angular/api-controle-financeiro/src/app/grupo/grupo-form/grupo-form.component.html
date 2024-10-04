@@ -1,3 +1,10 @@
+<p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+<div *ngIf="pessoa">
+  <p-fieldset legend="Pessoa">
+      <p><strong>Nome:</strong> {{ pessoa.nome }}</p>
+      <p><strong>CPF:</strong> {{ pessoa.cpf }}</p>
+  </p-fieldset>
+  </div>
 <div class="formulario-container">
   <h2>Formulário de Cadastro de Grupo</h2>
   <form (ngSubmit)="onSubmit()" class="formulario-form">
@@ -15,12 +22,3 @@
 
   </form>
 </div>
-<div *ngIf="pessoa">
-  <p-fieldset legend="Detalhes da Pessoa">
-      <p><strong>Nome:</strong> {{ pessoa.nome }}</p>
-      <p><strong>CPF:</strong> {{ pessoa.cpf }}</p>
-      <p><strong>Email:</strong> {{ pessoa.email }}</p>
-      <p><strong>Telefone:</strong> {{ pessoa.telefone }}</p>
-  <!-- Botão para editar a pessoa selecionada -->
-  </p-fieldset>
-  </div>

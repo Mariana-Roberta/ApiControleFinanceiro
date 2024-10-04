@@ -64,6 +64,10 @@ export class PessoaListagemComponent implements OnInit {
     this.router.navigate(['/grupo/grupo-form', pessoa.id]);
   }
 
+  verGrupos(pessoa: Pessoa){
+    this.router.navigate(['/grupo/grupo-listagem/pessoa/', pessoa.id])
+  }
+
   irParaFormulario() {
     this.router.navigate(['/pessoa/pessoa-formulario'])
   }
