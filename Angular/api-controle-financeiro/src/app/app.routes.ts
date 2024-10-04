@@ -32,10 +32,9 @@ export const routes: Routes = [
   { path: 'lancamento/lancamento-listagem/:id', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-visualizacao/:id', component: LancamentoVisualizacaoComponent },
   { path: 'lancamento/lancamento-edit/:id', component: LancamentoEditComponent },
-  { path: '', redirectTo: 'pessoa/pessoa-listagem', pathMatch: 'full' },
-  { path: 'relatorio', component: RelatorioListagemComponent }
   { path: 'relatorio', component: RelatorioListagemComponent },
-  { path: 'meta/meta-form', component: MetaFormComponent},
-  { path: 'meta/meta-list', component: MetaListComponent},
-  { path: 'meta/meta-edit/:id', component: MetaEditComponent}
+  { path: 'meta/meta-form/:id', component: MetaFormComponent},
+  { path: 'meta/meta-list/:id', component: MetaListComponent},
+  { path: 'meta/meta-edit/:id', component: MetaEditComponent},
+  { path: '', redirectTo: 'pessoa/pessoa-listagem', pathMatch: 'full' }
 ];
