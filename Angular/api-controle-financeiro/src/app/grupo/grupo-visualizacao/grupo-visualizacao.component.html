@@ -1,0 +1,36 @@
+<div class="menu-voltar"><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button></div>
+
+<!--    Tudo Sobre Grupo   -->
+<div class="tudo-sobre-grupo" *ngIf="grupo">
+
+    <!--    Detalhes do Grupo   -->
+    <div class="detalhes-grupo">
+        <p-panel header="Detalhes do Grupo">
+            <p><strong>Nome do Grupo:</strong> {{ grupo.nome }}</p>
+            <p><strong>Descrição:</strong> {{ grupo.descricao }}</p>
+            <p><strong>Saldo:</strong><span [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{grupo.saldo | currency: 'BRL':'symbol':'1.2-2'}}</span></p>
+        </p-panel>
+    </div>
+    
+    <p-button label="Editar Grupo" [raised]="true" (click)="editarGrupo()"></p-button>
+
+    <!--    Lançamentos -->
+    <div class="info-lancamentos">
+        <p-panel header="Lançamentos">
+            <p-button label="Ver Lançamentos" [raised]="true" (click)="verLancamentos()"></p-button>
+            <p-button label="Novo Lançamento" [raised]="true" (click)="novoLancamento()"></p-button>
+        </p-panel>
+    </div>
+    <!--    Lançamentos -->
+
+    <!--    Metas   -->
+    <div class="info-metas">
+        <p-panel header="Metas">
+            <p-button label="Ver Metas" [raised]="true" (click)="verMetas()"></p-button>
+            <p-button label="Nova Meta" [raised]="true" (click)="novaMeta()"></p-button>
+        </p-panel>
+    </div>
+    <!--    Metas   -->
+
+</div>
+<!--    Tudo Sobre Grupo   -->

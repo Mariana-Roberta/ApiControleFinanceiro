@@ -6,7 +6,6 @@ import com.grupoMarianaOttony.ApiControleFinanceiro.dto.RelatorioDTO;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Pessoa;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.GrupoRepository;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.LancamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +28,6 @@ public class GrupoService {
 
     public List<Grupo> findAll() { return grupoRepository.findAll(); }
 
-    public List<Grupo> findAllByPessoaId(Integer id) {
-        Pessoa pessoa = pessoaService.findById(id);
-        return grupoRepository.findAllByPessoa(pessoa); }
-
     public Grupo findById(Integer id) { return grupoRepository.findById(id).orElseThrow(); }
 
     public Grupo save(Grupo grupo) { return grupoRepository.save(grupo); }
@@ -40,6 +35,8 @@ public class GrupoService {
     public Grupo update(Grupo grupo) { return grupoRepository.save(grupo); }
 
     public void deleteById(Integer id) { grupoRepository.deleteById(id); }
+
+    public List<Grupo> findAllByPessoaId(Integer id){ return grupoRepository.findAllByPessoaId(id); }
 
     // Geração de relatório mensal
     /*

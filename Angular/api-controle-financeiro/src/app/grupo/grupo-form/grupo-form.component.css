@@ -1,0 +1,53 @@
+.formulario-container {
+  max-width: 600px; /* Limita a largura do formulário */
+  margin: 0 auto; /* Centraliza o formulário na página */
+  padding: 20px; /* Adiciona espaçamento interno */
+  border: 1px solid #ccc; /* Borda do formulário */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+}
+
+h2 {
+  text-align: center; /* Centraliza o título */
+  color: #333; /* Cor do texto do título */
+  margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.formulario-form {
+  display: flex; /* Usa flexbox para o layout */
+  flex-direction: column; /* Coloca os elementos em coluna */
+}
+
+.p-field {
+  margin-bottom: 15px; /* Espaço entre os campos */
+}
+
+label {
+  font-weight: bold; /* Destaca os rótulos */
+  margin-bottom: 15px; /* Espaço abaixo dos rótulos */
+  color: #555; /* Cor dos rótulos */
+}
+
+input {
+  width: 100%; /* Faz os inputs ocuparem toda a largura disponível */
+  padding: 10px; /* Espaçamento interno nos inputs */
+  border: 1px solid #ccc; /* Borda dos inputs */
+  border-radius: 4px; /* Cantos arredondados nos inputs */
+  font-size: 16px; /* Tamanho da fonte dos inputs */
+  margin-bottom: 15px;
+}
+
+input:focus {
+  border-color: #007ad9; /* Cor da borda quando o input está em foco */
+  outline: none; /* Remove o contorno padrão */
+}
+
+p-button {
+  align-self: center; /* Centraliza o botão */
+}
+
+.error {
+  color: red; /* Cor das mensagens de erro */
+  font-size: 12px; /* Tamanho da fonte */
+  margin-top: 5px; /* Espaço acima das mensagens de erro */
+}

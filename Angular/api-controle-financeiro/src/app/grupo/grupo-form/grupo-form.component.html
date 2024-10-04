@@ -1,0 +1,24 @@
+<p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+<div *ngIf="pessoa">
+  <p-fieldset legend="Pessoa">
+      <p><strong>Nome:</strong> {{ pessoa.nome }}</p>
+      <p><strong>CPF:</strong> {{ pessoa.cpf }}</p>
+  </p-fieldset>
+  </div>
+<div class="formulario-container">
+  <h2>Formulário de Cadastro de Grupo</h2>
+  <form (ngSubmit)="onSubmit()" class="formulario-form">
+
+    <label for="nome">Nome:</label>
+    <input id="nome" pInputText [(ngModel)]="grupo.nome" name="nome">
+
+    <label for="email">Descrição:</label>
+    <input id="email" pInputText [(ngModel)]="grupo.descricao" name="descricao" >
+
+    <label for="saldo">Saldo Inicial:</label>
+    <input id="saldo" pInputText [(ngModel)]="grupo.saldo" name="saldo" >
+
+    <p-button label="Cadastrar" [raised]="true" type="submit"></p-button>
+
+  </form>
+</div>

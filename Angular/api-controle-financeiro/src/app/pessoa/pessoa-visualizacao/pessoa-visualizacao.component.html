@@ -29,23 +29,6 @@
             </ng-template>
         </p-table>
     </p-fieldset>
-    <h4>Grupos Associados</h4>
-    <p-table [value]="grupos" [tableStyle]="{ 'min-width': '30rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Nome do Grupo</th>
-                <th>Descrição</th>
-                <th>Ação</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-grupo>
-            <tr>
-                <td>{{ grupo.nome }}</td>
-                <td>{{ grupo.descricao }}</td>
-                <td><p-button label="Remover" ></p-button> <p-button label="Editar"></p-button></td>
-            </tr>
-        </ng-template>
-    </p-table>
 
     <!-- Botão para adicionar um novo grupo à pessoa -->
     <!--<p-button label="Adicionar Novo Grupo" (click)="criarNovoGrupo(pessoaSelecionada)"></p-button>-->

@@ -1,13 +1,10 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class MetaService {
@@ -31,6 +28,6 @@ public class MetaService {
     }
 
     public Meta findByType(Tipo tipo) {
-        return metaRepository.findByType(tipo).stream().findFirst().orElse(null);
+        return metaRepository.findByTipo(tipo).stream().findFirst().orElse(null);
     }
 }

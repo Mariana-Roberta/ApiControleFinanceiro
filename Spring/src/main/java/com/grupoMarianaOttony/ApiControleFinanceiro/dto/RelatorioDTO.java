@@ -8,10 +8,10 @@ public class RelatorioDTO {
     private LocalDate data;
     private String descricao;
     private Categoria categoria;
-    private Float valor;
+    private double valor;
     private String grupo; // Nome do grupo (opcional para relatórios por categoria)
 
-    public RelatorioDTO(LocalDate data, String descricao, Categoria categoria, Float valor, String grupo) {
+    public RelatorioDTO(LocalDate data, String descricao, Categoria categoria, double valor, String grupo) {
         this.data = data;
         this.descricao = descricao;
         this.categoria = categoria;
@@ -45,11 +45,11 @@ public class RelatorioDTO {
         this.categoria = categoria;
     }
 
-    public Float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GrupoDTO {
 
-    private Integer id;
+    private Integer id = 0;
 
     @NotBlank(message = "Nome do grupo não pode ser vazio")
     @Size(min = 3, max = 50, message = "Nome do grupo deve ter entre 3 e 50 caracteres")
@@ -21,9 +21,9 @@ public class GrupoDTO {
     @Size(min = 10, max = 200, message = "Descrição do grupo deve ter entre 10 e 200 caracteres")
     private String descricao;
 
-    private Float saldo;
-
     private Integer pessoaId;
+
+    private double saldo;
 
     private List<Lancamento> lancamentos;
     private List<Meta> metas;
@@ -32,14 +32,13 @@ public class GrupoDTO {
     public GrupoDTO() {}
 
     // Construtor completo
-
-
-    public GrupoDTO(Integer id, String nome, String descricao, Float saldo, Integer pessoaId, List<Lancamento> lancamentos, List<Meta> metas) {
+    public GrupoDTO(Integer id, String nome, String descricao, double saldo, Integer pessoaId, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.saldo = saldo;
         this.pessoaId = pessoaId;
+        this.saldo = saldo;
         this.lancamentos = lancamentos;
         this.metas = metas;
     }
@@ -77,6 +76,14 @@ public class GrupoDTO {
         this.pessoaId = pessoaId;
     }
 
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
+    }
+
     public List<Lancamento> getLancamentos() {
         return lancamentos;
     }
@@ -91,14 +98,6 @@ public class GrupoDTO {
 
     public void setMetas(List<Meta> metas) {
         this.metas = metas;
-    }
-
-    public Float getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Float saldo) {
-        this.saldo = saldo;
     }
 
     @Override

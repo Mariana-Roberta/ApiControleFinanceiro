@@ -1,11 +1,13 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 
 public class MetaDTO {
     Integer id;
     double valor;
     Tipo tipo;
+    Grupo grupo;
 
     public MetaDTO() {
     }
@@ -32,5 +34,13 @@ public class MetaDTO {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    public void setGrupo(Grupo grupo){
+        this.grupo = grupo;
+    }
+
+    public Grupo getGrupo(){
+        return grupo;
     }
 }

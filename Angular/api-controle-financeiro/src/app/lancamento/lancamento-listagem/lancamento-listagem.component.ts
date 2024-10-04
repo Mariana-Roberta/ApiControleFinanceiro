@@ -1,17 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {Button} from "primeng/button";
+import { Location, CurrencyPipe, NgIf, NgStyle } from '@angular/common';
 import {PrimeTemplate} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Lancamento} from "../../model/lancamento";
 import {LancamentoHttpService} from "../../services/lancamento/lancamento-http.service";
 import {Grupo} from "../../model/grupo";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import { PanelModule } from 'primeng/panel';
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 
 @Component({
   selector: 'app-lancamento-listagem',
   standalone: true,
     imports: [
+        PanelModule,
+        CurrencyPipe,
+        NgStyle,
+        NgIf,
         Button,
         PrimeTemplate,
         TableModule
@@ -26,18 +32,21 @@ export class LancamentoListagemComponent implements OnInit {
     grupo: Grupo = {
         id: 0,
         nome: '',
-        descricao: ''
+        descricao: '',
+        saldo: 0,
+        pessoa: undefined
     };
 
     constructor(private lancamentoHttpService: LancamentoHttpService,
-                private grupoHttpService: GrupoHttpService,
+                private grupoFormService: GrupoFormService,
                 private route: ActivatedRoute,
+                private location: Location,
                 private router: Router) {}
 
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
-            this.grupoHttpService.getGrupoById(Number(id)).subscribe(
+            this.grupoFormService.getGrupoById(Number(id)).subscribe(
                 (dados: Grupo) => {
                     this.grupo = dados;
                     this.carregarLancamentosByGrupo();
@@ -78,7 +87,15 @@ export class LancamentoListagemComponent implements OnInit {
         this.router.navigate(['/lancamento/lancamento-edit', lancamentoId]);
     }
 
+    novoLancamento(grupoId: number){
+        this.router.navigate(['/lancamento/lancamento-formulario', grupoId])
+    }
+
     verLancamento(lancamentoId: number) {
         this.router.navigate(['/lancamento/lancamento-visualizacao', lancamentoId]);
+    }
+
+    voltar() {
+        this.location.back(); // Volta para a página anterior no histórico
     }
 }

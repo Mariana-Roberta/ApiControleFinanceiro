@@ -1,6 +1,5 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.exceptions;
 
-import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,8 +14,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidSaldoException.class)
+    @ExceptionHandler(PessoaException.class)
     public ResponseEntity<ErrorResponse> handlePessoaException(PessoaException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(LancamentoException.class)
+    public ResponseEntity<ErrorResponse> handleLancamentoException(LancamentoException ex){
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }

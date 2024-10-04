@@ -4,7 +4,7 @@ import {CurrencyPipe, DatePipe, Location, NgIf} from "@angular/common";
 import {PrimeTemplate} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {Lancamento} from "../../model/lancamento";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {LancamentoHttpService} from "../../services/lancamento/lancamento-http.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Grupo} from "../../model/grupo";

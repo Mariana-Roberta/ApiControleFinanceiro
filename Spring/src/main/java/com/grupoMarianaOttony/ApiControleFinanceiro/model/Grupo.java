@@ -29,8 +29,9 @@ public class Grupo {
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao; // descricao do grupo
 
-    @Column(name = "saldo", nullable = false, columnDefinition = "float default 0.0")
-    private Float saldo;
+    @NotBlank(message = "Saldo Inicial não pode estar vazio.")
+    @Column(name = "SALDO", nullable = false)
+    private double saldo;
 
     // Relacionamento com Pessoa
     @ManyToOne
@@ -50,9 +51,7 @@ public class Grupo {
     public Grupo() {}
 
     // Construtor completo
-
-
-    public Grupo(Integer id, String nome, String descricao, Float saldo, Pessoa pessoa, List<Lancamento> lancamentos, List<Meta> metas) {
+    public Grupo(Integer id, String nome, String descricao, double saldo,Pessoa pessoa, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -87,6 +86,14 @@ public class Grupo {
         this.descricao = descricao;
     }
 
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
+    }
+
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -111,15 +118,6 @@ public class Grupo {
         this.metas = metas;
     }
 
-    public Float getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Float saldo) {
-        this.saldo = saldo;
-    }
-
-
     @Override
     public String toString() {
         return "Grupo{" +
@@ -138,7 +136,7 @@ public class Grupo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Grupo grupo = (Grupo) o;
-        return Float.compare(saldo, grupo.saldo) == 0 && Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos) && Objects.equals(metas, grupo.metas);
+        return Double.compare(saldo, grupo.saldo) == 0 && Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos) && Objects.equals(metas, grupo.metas);
     }
 
     @Override

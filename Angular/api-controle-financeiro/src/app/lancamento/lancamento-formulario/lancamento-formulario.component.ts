@@ -6,10 +6,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LancamentoHttpService} from "../../services/lancamento/lancamento-http.service";
 import {Lancamento} from "../../model/lancamento";
 import {Grupo} from "../../model/grupo";
-import {GrupoHttpService} from "../../services/grupo/grupo-http.service";
+import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {DropdownModule} from 'primeng/dropdown';
+import {Tipo} from "../../model/tipo";
 import {Categoria} from "../../model/categoria";
-import {NgForOf} from "@angular/common";
+import {Location, NgForOf} from "@angular/common";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 
@@ -37,7 +38,7 @@ export class LancamentoFormularioComponent implements OnInit {
         nome: '',
         descricao: '',
         data: '',
-        tipo: '',
+        tipo: Tipo.Receita,
         valor: 0,
         categoria: Categoria.Geral
     };
@@ -45,16 +46,21 @@ export class LancamentoFormularioComponent implements OnInit {
     grupo: Grupo = {
         id: 0,
         nome: '',
-        descricao: ''
+        descricao: '',
+        saldo: 0,
+        pessoa: undefined
     };
 
+    tipos: { label: string; value: Tipo }[] = [];// Array de opções para o dropdown
+    tipoSelecionada: Tipo | undefined; // Armazena a categoria selecionada
     categorias: { label: string; value: Categoria }[] = [];  // Array de opções para o dropdown
     categoriaSelecionada: Categoria | undefined;  // Armazena a categoria selecionada
 
     constructor(private _router: Router,
                 private lancamentoHttpService: LancamentoHttpService,
                 private route: ActivatedRoute,
-                private grupoHttpService: GrupoHttpService,
+                private grupoFormService: GrupoFormService,
+                private location: Location,
                 private messageService: MessageService) {
     }
 
@@ -62,7 +68,7 @@ export class LancamentoFormularioComponent implements OnInit {
         // Obtém o id da pessoa da rota
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
-            this.grupoHttpService.getGrupoById(Number(id)).subscribe(
+            this.grupoFormService.getGrupoById(Number(id)).subscribe(
                 (dados: Grupo) => {
                     this.grupo = dados;
                 },
@@ -75,6 +81,11 @@ export class LancamentoFormularioComponent implements OnInit {
         this.categorias = Object.keys(Categoria).map(key => ({
             label: key,  // Exibe o nome do enum como label
             value: Categoria[key as keyof typeof Categoria]  // O valor deve ser o enum
+        }));
+
+        this.tipos = Object.keys(Tipo).map(key => ({
+            label: key,  // Exibe o nome do enum como label
+            value: Tipo[key as keyof typeof Tipo]  // O valor deve ser o enum
         }));
 
 
@@ -91,15 +102,25 @@ export class LancamentoFormularioComponent implements OnInit {
         }
         console.log(this.categoriaSelecionada);
         console.log(JSON.stringify(this.lancamento));
+        
+        if (this.tipoSelecionada) {
+            this.lancamento.tipo = this.tipoSelecionada;
+        }
+        console.log(this.tipoSelecionada);
+        console.log(JSON.stringify(this.lancamento));
 
         this.lancamentoHttpService.addLancamento(this.lancamento, this.grupo)
             .subscribe({
                 next: (value) => {
-                    this._router.navigate(['/pessoa/pessoa-listagem'])
+                    this._router.navigate(['lancamento/lancamento-listagem', this.grupo.id])
                 }, error: (err) => {
                   this.errorMessage = err;
                   this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: this.errorMessage });
                 }
             });
+    }
+
+    voltar() {
+        this.location.back(); // Volta para a página anterior no histórico
     }
 }
