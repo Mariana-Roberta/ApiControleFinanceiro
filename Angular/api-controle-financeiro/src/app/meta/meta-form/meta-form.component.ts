@@ -40,30 +40,19 @@ export class MetaFormComponent {
 
 
 
-addMeta(){
-  this._metaHttpService.addMeta(this.meta)
-  .subscribe({
-    next: (value) => {
-      this._router.navigate(['/meta/meta-list'])
-    }, error: (err) => {
-      console.error("falha ao adicionar a meta", err)
-      alert("Falha ao adicionar meta")
+  addMeta(){
+    this._metaHttpService.addMeta(this.meta)
+    .subscribe({
+      next: (value) => {
+        this._router.navigate(['/meta/meta-list'])
+      }, error: (err) => {
+        console.error("falha ao adicionar a meta", err)
+        alert("Falha ao adicionar meta")
+      }
+    });
     }
-  });
-  }
 
-onSubmit(){
-  this.addMeta;
-}  
-    
-
-
-
-
-
-
-
-
-
-
+  onSubmit(){
+    this.addMeta;
+  }  
 }
