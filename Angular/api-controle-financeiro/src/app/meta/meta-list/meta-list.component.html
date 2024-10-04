@@ -1,0 +1,25 @@
+<p-button label="Nova Meta" [raised]="true" (click)="irParaFormulario()"></p-button>
+<p-table [value]="metas" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+  <tr>
+    <th>Tipo</th>
+    <th>Valor</th>
+  </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-meta>
+  <tr>
+    <td>{{meta.tipo}}</td>
+    <td>{{meta.valor}}</td>
+    <td><p-button (click) = "editarMeta(meta)">Editar</p-button> <p-button (click)="editarMeta(meta)"></p-button> </td>
+    
+  </tr>
+
+
+
+</ng-template>
+</p-table>
+
+
+
+
+

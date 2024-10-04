@@ -8,6 +8,9 @@ import {LancamentoListagemComponent} from "./lancamento/lancamento-listagem/lanc
 import {LancamentoVisualizacaoComponent} from "./lancamento/lancamento-visualizacao/lancamento-visualizacao.component";
 import {LancamentoEditComponent} from "./lancamento/lancamento-edit/lancamento-edit.component";
 import {RelatorioListagemComponent} from "./relatorio/relatorio-listagem/relatorio-listagem.component";
+import { MetaFormComponent } from './meta/meta-form/meta-form.component';
+import { MetaListComponent } from './meta/meta-list/meta-list.component';
+import { MetaEditComponent } from './meta/meta-edit/meta-edit.component';
 
 export const routes: Routes = [
   { path: 'pessoa/pessoa-formulario', component: PessoaFormularioComponent },
@@ -19,5 +22,8 @@ export const routes: Routes = [
   { path: 'lancamento/lancamento-listagem/:id', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-visualizacao/:id', component: LancamentoVisualizacaoComponent },
   { path: 'lancamento/lancamento-edit/:id', component: LancamentoEditComponent },
-  { path: 'relatorio', component: RelatorioListagemComponent }
+  { path: 'relatorio', component: RelatorioListagemComponent },
+  { path: 'meta/meta-form', component: MetaFormComponent},
+  { path: 'meta/meta-list', component: MetaListComponent},
+  { path: 'meta/meta-edit/:id', component: MetaEditComponent}
 ];
