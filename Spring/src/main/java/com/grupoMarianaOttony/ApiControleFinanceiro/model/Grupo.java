@@ -29,6 +29,9 @@ public class Grupo {
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao; // descricao do grupo
 
+    @Column(name = "saldo", nullable = false, columnDefinition = "float default 0.0")
+    private Float saldo;
+
     // Relacionamento com Pessoa
     @ManyToOne
     @JoinColumn(name = "pessoa_id", nullable = false) // Chave estrangeira para Pessoa
@@ -39,18 +42,24 @@ public class Grupo {
     @JsonManagedReference
     private List<Lancamento> lancamentos;
 
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Meta> metas;
+
     // Construtor vazio
     public Grupo() {}
 
     // Construtor completo
 
 
-    public Grupo(Integer id, String nome, String descricao, Pessoa pessoa, List<Lancamento> lancamentos) {
+    public Grupo(Integer id, String nome, String descricao, Float saldo, Pessoa pessoa, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.saldo = saldo;
         this.pessoa = pessoa;
         this.lancamentos = lancamentos;
+        this.metas = metas;
     }
 
     // Getters e Setters
@@ -94,14 +103,33 @@ public class Grupo {
         this.lancamentos = lancamentos;
     }
 
+    public List<Meta> getMetas() {
+        return metas;
+    }
+
+    public void setMetas(List<Meta> metas) {
+        this.metas = metas;
+    }
+
+    public Float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Float saldo) {
+        this.saldo = saldo;
+    }
+
+
     @Override
     public String toString() {
         return "Grupo{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", saldo=" + saldo +
                 ", pessoa=" + pessoa +
                 ", lancamentos=" + lancamentos +
+                ", metas=" + metas +
                 '}';
     }
 
@@ -110,11 +138,11 @@ public class Grupo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Grupo grupo = (Grupo) o;
-        return Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos);
+        return Float.compare(saldo, grupo.saldo) == 0 && Objects.equals(id, grupo.id) && Objects.equals(nome, grupo.nome) && Objects.equals(descricao, grupo.descricao) && Objects.equals(pessoa, grupo.pessoa) && Objects.equals(lancamentos, grupo.lancamentos) && Objects.equals(metas, grupo.metas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao, pessoa, lancamentos);
+        return Objects.hash(id, nome, descricao, saldo, pessoa, lancamentos, metas);
     }
 }

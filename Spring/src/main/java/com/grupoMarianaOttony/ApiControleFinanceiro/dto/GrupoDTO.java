@@ -3,6 +3,7 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -20,9 +21,12 @@ public class GrupoDTO {
     @Size(min = 10, max = 200, message = "Descrição do grupo deve ter entre 10 e 200 caracteres")
     private String descricao;
 
+    private Float saldo;
+
     private Integer pessoaId;
 
     private List<Lancamento> lancamentos;
+    private List<Meta> metas;
 
     // Construtor vazio
     public GrupoDTO() {}
@@ -30,12 +34,14 @@ public class GrupoDTO {
     // Construtor completo
 
 
-    public GrupoDTO(Integer id, String nome, String descricao, Integer pessoaId, List<Lancamento> lancamentos) {
+    public GrupoDTO(Integer id, String nome, String descricao, Float saldo, Integer pessoaId, List<Lancamento> lancamentos, List<Meta> metas) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.saldo = saldo;
         this.pessoaId = pessoaId;
         this.lancamentos = lancamentos;
+        this.metas = metas;
     }
 
     // Getters e Setters
@@ -79,14 +85,32 @@ public class GrupoDTO {
         this.lancamentos = lancamentos;
     }
 
+    public List<Meta> getMetas() {
+        return metas;
+    }
+
+    public void setMetas(List<Meta> metas) {
+        this.metas = metas;
+    }
+
+    public Float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Float saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public String toString() {
         return "GrupoDTO{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", saldo='" + saldo + '\'' +
                 ", pessoaId=" + pessoaId +
                 ", lancamentos=" + lancamentos +
+                ", metas=" + metas +
                 '}';
     }
 }
