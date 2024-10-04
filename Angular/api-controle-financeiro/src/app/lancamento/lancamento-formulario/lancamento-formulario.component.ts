@@ -8,6 +8,7 @@ import {Lancamento} from "../../model/lancamento";
 import {Grupo} from "../../model/grupo";
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {DropdownModule} from 'primeng/dropdown';
+import {Tipo} from "../../model/tipo";
 import {Categoria} from "../../model/categoria";
 import {Location, NgForOf} from "@angular/common";
 import {ToastModule} from "primeng/toast";
@@ -37,7 +38,7 @@ export class LancamentoFormularioComponent implements OnInit {
         nome: '',
         descricao: '',
         data: '',
-        tipo: '',
+        tipo: Tipo.Receita,
         valor: 0,
         categoria: Categoria.Geral
     };
@@ -50,6 +51,8 @@ export class LancamentoFormularioComponent implements OnInit {
         pessoa: undefined
     };
 
+    tipos: { label: string; value: Tipo }[] = [];// Array de opções para o dropdown
+    tipoSelecionada: Tipo | undefined; // Armazena a categoria selecionada
     categorias: { label: string; value: Categoria }[] = [];  // Array de opções para o dropdown
     categoriaSelecionada: Categoria | undefined;  // Armazena a categoria selecionada
 
@@ -80,6 +83,11 @@ export class LancamentoFormularioComponent implements OnInit {
             value: Categoria[key as keyof typeof Categoria]  // O valor deve ser o enum
         }));
 
+        this.tipos = Object.keys(Tipo).map(key => ({
+            label: key,  // Exibe o nome do enum como label
+            value: Tipo[key as keyof typeof Tipo]  // O valor deve ser o enum
+        }));
+
 
     }
 
@@ -94,14 +102,18 @@ export class LancamentoFormularioComponent implements OnInit {
         }
         console.log(this.categoriaSelecionada);
         console.log(JSON.stringify(this.lancamento));
+        
+        if (this.tipoSelecionada) {
+            this.lancamento.tipo = this.tipoSelecionada;
+        }
+        console.log(this.tipoSelecionada);
+        console.log(JSON.stringify(this.lancamento));
 
         this.lancamentoHttpService.addLancamento(this.lancamento, this.grupo)
             .subscribe({
                 next: (value) => {
-                    this._router.navigate(['lancamento/lancamento-listagem'])
+                    this._router.navigate(['lancamento/lancamento-listagem', this.grupo.id])
                 }, error: (err) => {
-                    console.error("Falha ao adicionar lancamento", err)
-                    alert("Falha ao adicionar lancamento")
                   this.errorMessage = err;
                   this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: this.errorMessage });
                 }

@@ -1,5 +1,5 @@
 <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
-<p-button label="Novo Lançamento" [raised]="true" ></p-button>
+<p-button label="Novo Lançamento" [raised]="true" (click)="novoLancamento(grupo.id)"></p-button>
 <div class="tudo-sobre-grupo" *ngIf="grupo">
 
     <!--    Detalhes do Grupo   -->

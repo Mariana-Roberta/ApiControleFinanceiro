@@ -16,13 +16,17 @@
         <input id="data" pInputText [(ngModel)]="lancamento.data" name="data">
 
         <label for="tipo">Tipo:</label>
-        <input id="tipo" pInputText [(ngModel)]="lancamento.tipo" name="tipo" >
+        <select [(ngModel)]="tipoSelecionada" name="tipo" style="font-size: 16px; padding: 8px; ">
+            <option *ngFor="let tipo of tipos" [value]="tipo.value">
+                {{ tipo.label }}
+            </option>
+        </select>
 
         <label for="valor">Valor:</label>
         <input id="valor" pInputText [(ngModel)]="lancamento.valor" name="valor">
 
-        <label for="categoria">Categoria:</label>
-        <input id="categoria" pInputText [(ngModel)]="lancamento.categoria" name="categoria" >
+        <!--<label for="categoria">Categoria:</label>
+        <input id="categoria" pInputText [(ngModel)]="lancamento.categoria" name="categoria" >-->
 
         <!--<p-dropdown
                 [options]="categorias"
@@ -30,8 +34,8 @@
                 optionLabel="value"
                 placeholder="Selecione uma categoria"
                 name="categoria"/>-->
-
-        <select [(ngModel)]="categoriaSelecionada" name="categoria">
+        <label for="categoria">Categoria:</label>
+        <select [(ngModel)]="categoriaSelecionada" name="categoria" style="font-size: 16px; padding: 8px;">
             <option *ngFor="let categoria of categorias" [value]="categoria.value">
                 {{ categoria.label }}
             </option>

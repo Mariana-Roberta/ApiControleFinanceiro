@@ -2,6 +2,8 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.LancamentoException;
+import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.PessoaException;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.GrupoRepository;
@@ -32,6 +34,7 @@ public class LancamentoService {
     }
 
     public Lancamento save(Lancamento lancamento) {
+        lancamentoExceptionHandler(lancamento);
         Grupo grupo = lancamento.getGrupo();
         double saldo = grupo.getSaldo();
         //Modifica o saldo baseado no tipo de lancamento
@@ -49,5 +52,17 @@ public class LancamentoService {
 
     public Lancamento findByNameContainingOrType(String nome, Tipo tipo, LocalDate data, Categoria categoria) {
         return lancamentoRepository.findByNomeContainingOrTipoOrDataOrCategoria(nome, tipo, data, categoria).stream().findFirst().orElse(null);
+    }
+
+    private void lancamentoExceptionHandler(Lancamento lancamento){
+        if (lancamento.getNome() == null || lancamento.getNome().isEmpty()) {
+            throw new LancamentoException("O nome deve ser informado.");
+        } else if (lancamento.getNome().length() < 3) {
+            throw new LancamentoException("O nome deve ser conter no mínimo 2 caracteres.");
+        }
+
+        if(lancamento.getValor() <=0) throw new LancamentoException("O valor deve ser maior que 0, não podendo ser negativo.");
+
+        if(lancamento.getTipo() == null) throw new LancamentoException("Escolha o tipo de lancamento. (Receita ou Despesa)");
     }
 }
