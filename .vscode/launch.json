@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "ApiControleFinanceiroApplication",
+      "request": "launch",
+      "mainClass": "com.grupoMarianaOttony.ApiControleFinanceiro.ApiControleFinanceiroApplication",
+      "projectName": "ApiControleFinanceiro"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
