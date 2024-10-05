@@ -1,6 +1,6 @@
 export interface Meta{
   id: number;
-  tipo: string;
+  categoria: string;
   valor: number;
 
 }

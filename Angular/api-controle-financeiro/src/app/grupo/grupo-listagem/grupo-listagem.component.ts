@@ -4,11 +4,12 @@ import { CurrencyPipe, Location, NgIf, NgStyle } from '@angular/common';
 import {PrimeTemplate} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {Router, ActivatedRoute} from "@angular/router";
-import {Grupo} from "../../model/grupo";
+import { Grupo } from '../../model/grupo';
 import {GrupoFormService} from "../../services/grupo/grupo-form.service";
 import {Pessoa} from "../../model/pessoa"
 import { FieldsetModule } from 'primeng/fieldset';
 import {PessoaHttpService} from "../../services/pessoa/pessoa-http.service";
+import { group } from 'console';
 
 @Component({
   selector: 'app-grupo-listagem',
@@ -64,9 +65,13 @@ export class GrupoListagemComponent {
     this.router.navigate(['/grupo/grupo-form', this.pessoa.id]);
   }
 
-  viewMeta(){
-      this.router.navigate(['/meta/meta-listagem']);
-    }
+  verMetas(grupo: Grupo){
+      this.router.navigate(['/meta/meta-list', grupo.id]);
+  }
+  
+  criarMeta(grupo: Grupo){
+    this.router.navigate(['/meta/meta-form', grupo.id])
+  }
 
   CriarLancamento(grupo: Grupo){
     this.router.navigate(['/lancamento/lancamento-formulario', grupo.id])
