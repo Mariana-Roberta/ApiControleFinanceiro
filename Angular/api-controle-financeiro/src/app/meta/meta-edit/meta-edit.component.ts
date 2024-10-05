@@ -22,7 +22,7 @@ export class MetaEditComponent implements OnInit{
 
 meta: Meta = {
   id: 0,
-  tipo: '',
+  categoria: '',
   valor: 0
   
 }
@@ -64,7 +64,7 @@ onSubmit() {
 }
 
 voltar() {
-  this.location.back();
+  this.location.back(); // Volta para a página anterior no histórico
 }
 
 

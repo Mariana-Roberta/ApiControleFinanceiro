@@ -1,16 +1,25 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 
 public class MetaDTO {
     Integer id;
     double valor;
-    Tipo tipo;
+    Categoria categoria;
     Grupo grupo;
 
     public MetaDTO() {
     }
+
+
+    public MetaDTO(Integer id, double valor, Categoria categoria, Grupo grupo) {
+        this.id = id;
+        this.valor = valor;
+        this.categoria = categoria;
+        this.grupo = grupo;
+    }
+
 
     public Integer getId() {
         return id;
@@ -28,14 +37,6 @@ public class MetaDTO {
         this.valor = valor;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
     public void setGrupo(Grupo grupo){
         this.grupo = grupo;
     }
@@ -43,4 +44,14 @@ public class MetaDTO {
     public Grupo getGrupo(){
         return grupo;
     }
+
+
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
 }

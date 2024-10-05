@@ -1,7 +1,7 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
+import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -12,9 +12,10 @@ public class Meta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "TIPO", nullable = false)
+    @Column(name = "CATEGORIA", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Tipo tipo;
+    private Categoria categoria;
+    
     @Column(name = "VALOR", nullable = false)
     private double valor;
 
@@ -23,9 +24,9 @@ public class Meta {
     @JsonBackReference
     private Grupo grupo;
 
-    public Meta(Integer id, Tipo tipo, double valor, Grupo grupo) {
+    public Meta(Integer id, Categoria categoria, double valor, Grupo grupo) {
         this.id = id;
-        this.tipo = tipo;
+        this.categoria = categoria;
         this.valor = valor;
         this.grupo = grupo;
     }
@@ -41,12 +42,12 @@ public class Meta {
         this.id = id;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public double getValor() {
@@ -69,7 +70,7 @@ public class Meta {
     public String toString() {
         return "Meta{" +
                 "id=" + id +
-                ", tipo='" + tipo + '\'' +
+                ", categoria='" + categoria + '\'' +
                 ", valor=" + valor +
                 ", grupo=" + grupo +
                 '}';
@@ -80,11 +81,11 @@ public class Meta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meta meta = (Meta) o;
-        return Objects.equals(id, meta.id) && Objects.equals(tipo, meta.tipo) && Objects.equals(valor, meta.valor) && Objects.equals(grupo, meta.grupo);
+        return Objects.equals(id, meta.id) && Objects.equals(categoria, meta.categoria) && Objects.equals(valor, meta.valor) && Objects.equals(grupo, meta.grupo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tipo, valor, grupo);
+        return Objects.hash(id, categoria, valor, grupo);
     }
 }

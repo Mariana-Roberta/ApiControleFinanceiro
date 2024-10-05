@@ -32,6 +32,10 @@ export class MetaHttpService{
     return this.http.get<Meta>(`${this.apiUrl}/findById/${id}`)
   }
 
+  getMetasByGrupo(grupoId: number): Observable<Meta[]> {
+    return this.http.get<Meta[]>(`${this.apiUrl}/grupo/${grupoId}`);
+  }
+
   updateMeta(meta : Meta): Observable<void>{
     return this.http.put<void>(`${this.apiUrl}/update/${meta.id}`, meta);
   }

@@ -1,4 +1,13 @@
+<p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+<div class="tudo-sobre-grupo" *ngIf="grupo">
 
+    <!--    Detalhes do Grupo   -->
+    <div class="detalhes-grupo">
+        <p-panel header="Detalhes do Grupo">
+            <p><strong>Nome do Grupo:</strong> {{ grupo.nome }} &nbsp;&nbsp;&nbsp; <strong>Saldo:</strong>&nbsp;<span [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{grupo.saldo | currency: 'BRL':'symbol':'1.2-2'}}</span></p>
+        </p-panel>
+    </div>
+</div>
 <div class="formulario-container">
 <h2>Formulario de Metas</h2>
 <form (ngSubmit)="onSubmit()" class="meta-form">
@@ -7,16 +16,12 @@
 <label for="valor">Valor:</label>
 <input id="valor" pInputText [(ngModel)]="meta.valor" name="valor">
 
-<label for="tipo">Tipo:</label>
-        <select [(ngModel)]="tipoSelecionado" name="tipo" style="font-size: 16px; padding: 8px;">
+<label for="categoria">Categoria:</label>
+        <select [(ngModel)]="categoriaSelecionada" name="categoria" style="font-size: 16px; padding: 8px;">
             <option *ngFor="let categoria of categorias" [value]="categoria.value">
-                {{ tipo.label }}
+                {{ categoria.label }}
             </option>
         </select>
-
-
-
-
 
 <p-button label="Salvar" [raised]="true" type="submit"></p-button>
 </form>
