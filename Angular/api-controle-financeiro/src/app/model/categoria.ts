@@ -4,5 +4,6 @@ export enum Categoria{
     Alimentacao = 'Alimentacao',
     Transporte = 'Transporte',
     Lazer = 'Lazer',
+    Saude = 'Saude',
     Outros = 'Outros'
 }

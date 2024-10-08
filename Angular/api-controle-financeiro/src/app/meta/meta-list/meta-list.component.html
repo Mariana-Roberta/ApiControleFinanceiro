@@ -1,0 +1,36 @@
+<p-button label="Nova Meta" [raised]="true" (click)="irParaFormulario()"></p-button><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+
+<div class="tudo-sobre-grupo" *ngIf="grupo">
+  <!--    Detalhes do Grupo   -->
+  <div class="detalhes-grupo">
+      <p-panel header="Detalhes do Grupo">
+          <p><strong>Nome do Grupo:</strong> {{ grupo.nome }} &nbsp;&nbsp;&nbsp; <strong>Saldo:</strong>&nbsp;<span [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{grupo.saldo | currency: 'BRL':'symbol':'1.2-2'}}</span></p>
+      </p-panel>
+  </div>
+</div>
+
+<p-table [value]="metas" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+  <tr>
+    <th>Categoria</th>
+    <th>Valor</th>
+    <th>Ação</th>
+  </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-meta>
+  <tr>
+    <td>{{meta.categoria}}</td>
+    <td>{{meta.valor}}</td>
+    <td><p-button (click) = "editarMeta(meta)">Editar</p-button>
+    
+  </tr>
+
+
+
+</ng-template>
+</p-table>
+
+
+
+
+

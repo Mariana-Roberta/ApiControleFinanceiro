@@ -1,18 +1,25 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
+import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MetaService {
     @Autowired
     private MetaRepository metaRepository;
 
     public List<Meta> findAll() {
         return metaRepository.findAll();
+    }
+
+    public List<Meta> findAllByGrupoId(Integer id) {
+        return metaRepository.findAllByGrupoId(id);
     }
 
     public Meta findById(Integer id) {
@@ -27,7 +34,7 @@ public class MetaService {
         this.metaRepository.deleteById(id);
     }
 
-    public Meta findByType(Tipo tipo) {
-        return metaRepository.findByTipo(tipo).stream().findFirst().orElse(null);
+    public Meta findByCategoria(Categoria categoria) {
+        return metaRepository.findByCategoria(categoria).stream().findFirst().orElse(null);
     }
 }

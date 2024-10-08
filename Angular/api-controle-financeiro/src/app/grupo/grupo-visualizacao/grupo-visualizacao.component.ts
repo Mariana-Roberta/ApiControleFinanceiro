@@ -69,12 +69,12 @@ export class GrupoVisualizacaoComponent {
   }
 
   verMetas() {
-    this.router.navigate(['/meta/meta-listagem', this.grupo.id]);
+    this.router.navigate(['/meta/meta-list', this.grupo.id]);
   }
 
   novaMeta() {
     // Navega para a página de edição com o ID do grupo
-    this.router.navigate(['/meta/meta-formulario', this.grupo.id]);
+    this.router.navigate(['/meta/meta-form', this.grupo.id]);
   }
 
   voltar() {
