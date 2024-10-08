@@ -1,7 +1,6 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

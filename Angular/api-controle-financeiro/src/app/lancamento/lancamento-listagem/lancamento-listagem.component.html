@@ -29,7 +29,7 @@
             <td>{{ lancamento.tipo }}</td>
             <td>{{lancamento.valor | currency: 'BRL':'symbol':'1.2-2'}}</td>
             <td>{{ lancamento.categoria }}</td>
-            <td><p-button (click)="editarLancamento(lancamento.id)" >Editar</p-button> <p-button (click)="verLancamento(lancamento.id)" >Ver</p-button> </td>
+            <td><p-button (click)="editarLancamento(lancamento.id, grupo)" >Editar</p-button> <p-button (click)="verLancamento(lancamento.id)" >Ver</p-button> </td>
         </tr>
     </ng-template>
 </p-table>

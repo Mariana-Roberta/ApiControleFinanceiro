@@ -3,7 +3,6 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.LancamentoException;
-import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.PessoaException;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.GrupoRepository;
@@ -31,6 +30,18 @@ public class LancamentoService {
 
     public List<Lancamento> findAllByGrupoId(Integer id){
         return lancamentoRepository.findAllByGrupoId(id);
+    }
+
+    public Lancamento update(Lancamento lancamento){
+        lancamentoExceptionHandler(lancamento);
+        if(lancamento.getTipo() != lancamento.getTipo() || lancamento.getValor() != lancamento.getValor()){
+            Grupo grupo = lancamento.getGrupo();
+            lancamentoRepository.save(lancamento);
+            grupo.setSaldo(lancamentoRepository.calcularSaldoPorGrupo(grupo.getId()));
+            lancamento.setGrupo(grupo);
+            //grupoRepository.save(grupo);
+        }
+        return lancamentoRepository.save(lancamento);
     }
 
     public Lancamento save(Lancamento lancamento) {

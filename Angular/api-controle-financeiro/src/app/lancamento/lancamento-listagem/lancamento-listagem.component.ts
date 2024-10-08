@@ -83,9 +83,10 @@ export class LancamentoListagemComponent implements OnInit {
         );
     }
 
-    editarLancamento(lancamentoId: number) {
-        this.router.navigate(['/lancamento/lancamento-edit', lancamentoId]);
+    editarLancamento(lancamentoId: number, grupo: Grupo) {
+        this.router.navigate(['/lancamento/lancamento-edit/edit', lancamentoId, grupo.id]);
     }
+    
 
     novoLancamento(grupoId: number){
         this.router.navigate(['/lancamento/lancamento-formulario', grupoId])

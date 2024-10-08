@@ -37,7 +37,7 @@ export class LancamentoHttpService {
 
 // Método para atualizar um lançamento
   updateLancamento(lancamento: Lancamento): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${lancamento.id}`, lancamento);
+    return this.http.put<void>(`${this.apiUrl}/edit/${lancamento.id}`, lancamento);
   }
 
 // Método para remover um lançamento

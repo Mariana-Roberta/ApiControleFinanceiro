@@ -4,7 +4,6 @@ import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 
-import java.time.LocalDate;
 
 public class LancamentoDTO {
      private Integer id;

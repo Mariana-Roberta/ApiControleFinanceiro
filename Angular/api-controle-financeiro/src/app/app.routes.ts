@@ -31,7 +31,7 @@ export const routes: Routes = [
   { path: 'lancamento/lancamento-listagem', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-listagem/:id', component: LancamentoListagemComponent },
   { path: 'lancamento/lancamento-visualizacao/:id', component: LancamentoVisualizacaoComponent },
-  { path: 'lancamento/lancamento-edit/:id', component: LancamentoEditComponent },
+  { path: 'lancamento/lancamento-edit/edit/:id/:grupoid', component: LancamentoEditComponent },
   { path: 'relatorio', component: RelatorioListagemComponent },
   { path: 'meta/meta-form/:id', component: MetaFormComponent},
   { path: 'meta/meta-list/:id', component: MetaListComponent},
