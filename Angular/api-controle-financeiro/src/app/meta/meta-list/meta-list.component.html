@@ -1,5 +1,8 @@
-<p-button label="Nova Meta" [raised]="true" (click)="irParaFormulario()"></p-button><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
-
+<div>
+  <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>&nbsp;&nbsp;
+  <p-button label="Lista de Pessoas" [raised]="true" (click)="voltarHome()"></p-button>&nbsp;&nbsp;
+  <p-button label="Nova Meta" [raised]="true" (click)="irParaFormulario()"></p-button>
+</div>
 <div class="tudo-sobre-grupo" *ngIf="grupo">
   <!--    Detalhes do Grupo   -->
   <div class="detalhes-grupo">
@@ -20,17 +23,9 @@
   <ng-template pTemplate="body" let-meta>
   <tr>
     <td>{{meta.categoria}}</td>
-    <td>{{meta.valor}}</td>
+    <td>{{meta.valor | currency: 'BRL':'symbol':'1.2-2'}}</td>
     <td><p-button (click) = "editarMeta(meta)">Editar</p-button>
     
   </tr>
-
-
-
 </ng-template>
 </p-table>
-
-
-
-
-

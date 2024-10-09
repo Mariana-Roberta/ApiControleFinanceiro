@@ -1,4 +1,8 @@
-<p-button label="Novo Grupo" [raised]="true" (click)="novoGrupo()"></p-button><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+<div>
+    <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>&nbsp;
+    <p-button label="Lista de Pessoas" [raised]="true" (click)="voltarHome()"></p-button>&nbsp;
+    <p-button label="Novo Grupo" [raised]="true" (click)="novoGrupo()"></p-button>
+</div>
 <div *ngIf="pessoa">
     <p-fieldset legend="Pessoa">
         <p><strong>Nome:</strong> {{ pessoa.nome }} &nbsp;&nbsp; <strong>CPF:</strong> {{ pessoa.cpf }}</p>
@@ -11,19 +15,17 @@
             <th>Nome</th>
             <th>Descricao</th>
             <th>Saldo</th>
-            <th>Ação</th>
             <th>Lancamentos</th>
             <th>Metas</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-grupo>
         <tr>
-            <td>{{ grupo.nome }}</td>
+            <td><span (click)="verGrupo(grupo)" style="cursor: pointer; color: blue;">{{ grupo.nome }}</span></td>
             <td>{{ grupo.descricao }}</td>
             <td [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{ grupo.saldo | currency: 'BRL':'symbol':'1.2-2' }}</td>
-            <td><p-button (click) = "editarGrupo(grupo)">Editar</p-button> <p-button (click) = "verGrupo(grupo)">Ver</p-button> </td>
-            <td><p-button (click) = "CriarLancamento(grupo)">Novo</p-button><p-button (click) = "verLancamentos(grupo)">Ver</p-button> </td>
-            <td><p-button (click) = "criarMeta(grupo)">Novo</p-button><p-button (click) = "verMetas(grupo)">Ver</p-button> </td>
+            <td><p-button (click) = "CriarLancamento(grupo)">Novo</p-button><p-button (click) = "verLancamentos(grupo)">Listar</p-button> </td>
+            <td><p-button (click) = "criarMeta(grupo)">Nova</p-button><p-button (click) = "verMetas(grupo)">Listar</p-button> </td>
         </tr>
     </ng-template>
 </p-table>

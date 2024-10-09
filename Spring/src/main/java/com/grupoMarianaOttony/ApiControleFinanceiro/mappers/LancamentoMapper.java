@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
 public class LancamentoMapper {
 
     public static LancamentoDTO toDTO(Lancamento lancamento) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDate = lancamento.getData().format(formatter);
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //String formattedDate = lancamento.getData().format(formatter);
 
         return new LancamentoDTO(
                 lancamento.getId(),
                 lancamento.getNome(),
                 lancamento.getDescricao(),
-                formattedDate,
+                lancamento.getData(),
                 lancamento.getTipo(),
                 lancamento.getValor(),
                 lancamento.getCategoria(),
@@ -26,14 +26,14 @@ public class LancamentoMapper {
     }
 
     public static Lancamento toEntity(LancamentoDTO lancamentoDTO, Grupo grupo) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(lancamentoDTO.getData(), formatter);
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //LocalDate localDate = lancamentoDTO.getData();
 
         return new Lancamento(
                 lancamentoDTO.getId(),
                 lancamentoDTO.getNome(),
                 lancamentoDTO.getDescricao(),
-                localDate,
+                lancamentoDTO.getData(),
                 lancamentoDTO.getTipo(),
                 lancamentoDTO.getValor(),
                 lancamentoDTO.getCategoria(),

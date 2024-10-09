@@ -1,5 +1,8 @@
-<p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
-<p-button label="Novo Lançamento" [raised]="true" (click)="novoLancamento(grupo.id)"></p-button>
+<div>
+    <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>&nbsp;&nbsp;
+    <p-button label="Lista de Pessoas" [raised]="true" (click)="voltarHome()"></p-button>&nbsp;&nbsp;
+    <p-button label="Novo Lançamento" [raised]="true" (click)="novoLancamento(grupo.id)"></p-button>
+</div>
 <div class="tudo-sobre-grupo" *ngIf="grupo">
 
     <!--    Detalhes do Grupo   -->
@@ -18,18 +21,18 @@
             <th>Tipo</th>
             <th>Valor</th>
             <th>Categoria</th>
-            <th>Ação</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-lancamento>
         <tr>
-            <td>{{ lancamento.nome }}</td>
+            <td> <span (click)="verLancamento(lancamento.id)" style="cursor: pointer; color: blue;">
+                {{ lancamento.nome }}
+            </span></td>
             <td>{{ lancamento.descricao }}</td>
             <td>{{ lancamento.data }}</td>
             <td>{{ lancamento.tipo }}</td>
             <td>{{lancamento.valor | currency: 'BRL':'symbol':'1.2-2'}}</td>
             <td>{{ lancamento.categoria }}</td>
-            <td><p-button (click)="editarLancamento(lancamento.id, grupo)" >Editar</p-button> <p-button (click)="verLancamento(lancamento.id)" >Ver</p-button> </td>
         </tr>
     </ng-template>
 </p-table>

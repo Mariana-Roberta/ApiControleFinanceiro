@@ -99,4 +99,8 @@ export class LancamentoListagemComponent implements OnInit {
     voltar() {
         this.location.back(); // Volta para a página anterior no histórico
     }
+
+    voltarHome(){
+        this.router.navigate(['']);
+    }
 }

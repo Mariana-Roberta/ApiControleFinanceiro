@@ -38,11 +38,6 @@ export class MetaListComponent implements OnInit {
   criandoGrupo: boolean = false;
 
   constructor(private metaHttpService : MetaHttpService, private router : Router, private route: ActivatedRoute, private grupoFormService: GrupoFormService, private location: Location ){}
-
-  
-  
-  
-  
   
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -56,8 +51,6 @@ export class MetaListComponent implements OnInit {
                     console.error('Erro ao carregar dados do grupo', error);
                 }
             );
-        } else {
-            this.carregarMetas();
         }
   }
 
@@ -77,9 +70,9 @@ editarMeta(meta : Meta){
   this.router.navigate(['/meta/meta-edit', meta.id])
 }
 
-// verMeta(meta : Meta){
-//   this.router.navigate(['/meta/meta'])
-// }
+voltarHome(){
+  this.router.navigate(['']);
+}
 
 irParaFormulario(){
   this.router.navigate(['/meta/meta-form', this.grupo.id])

@@ -61,7 +61,7 @@ export class LancamentoEditComponent implements OnInit{
         private route: ActivatedRoute,
         private router: Router,
         private messageService: MessageService,
-        private location: Location
+        private location: Location,
     ) {}
 
     ngOnInit() {
@@ -106,6 +106,16 @@ export class LancamentoEditComponent implements OnInit{
         this.editLancamento();
     }
 
+    formatarData() {
+        let data = this.lancamento.data.replace(/\D/g, '');
+        if (data.length > 4) {
+          data = data.replace(/(\d{2})(\d{2})(\d{1})/, '$1/$2/$3');
+        } else if (data.length > 2) {
+          data = data.replace(/(\d{2})(\d{1})/, '$1/$2');
+        }
+        this.lancamento.data = data;
+    }
+
     editLancamento() {
         if (this.categoriaSelecionada) {
             this.lancamento.categoria = this.categoriaSelecionada;
@@ -122,7 +132,8 @@ export class LancamentoEditComponent implements OnInit{
         this.lancamentoHttpService.updateLancamento(this.lancamento)
             .subscribe({
                 next: (value) => {
-                    this.router.navigate(['lancamento/lancamento-listagem', this.grupo.id])
+                    if(this.grupo.id != 0)this.router.navigate(['lancamento/lancamento-listagem', this.grupo.id])
+                    else this.voltar();
                 }, error: (err) => {
                   this.errorMessage = err;
                   this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: this.errorMessage });

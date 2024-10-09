@@ -75,6 +75,7 @@ public class LancamentoController {
         // Atualiza os dados do lançamento existente com os dados do DTO
         lancamentoExistente.setNome(lancamentoDTO.getNome());
         lancamentoExistente.setDescricao(lancamentoDTO.getDescricao());
+        lancamentoExistente.setData(lancamentoDTO.getData());
         lancamentoExistente.setTipo(lancamentoDTO.getTipo());
         lancamentoExistente.setCategoria(lancamentoDTO.getCategoria());
         lancamentoExistente.setValor(lancamentoDTO.getValor());

@@ -34,14 +34,12 @@ public class LancamentoService {
 
     public Lancamento update(Lancamento lancamento){
         lancamentoExceptionHandler(lancamento);
-        if(lancamento.getTipo() != lancamento.getTipo() || lancamento.getValor() != lancamento.getValor()){
-            Grupo grupo = lancamento.getGrupo();
-            lancamentoRepository.save(lancamento);
-            grupo.setSaldo(lancamentoRepository.calcularSaldoPorGrupo(grupo.getId()));
-            lancamento.setGrupo(grupo);
-            //grupoRepository.save(grupo);
-        }
-        return lancamentoRepository.save(lancamento);
+        Grupo grupo = lancamento.getGrupo();
+        lancamento =  lancamentoRepository.save(lancamento);
+        grupo.setSaldo(lancamentoRepository.calcularSaldoPorGrupo(grupo.getId()));
+        //lancamento.setGrupo(grupo);
+        grupoRepository.save(grupo);
+        return lancamento;
     }
 
     public Lancamento save(Lancamento lancamento) {

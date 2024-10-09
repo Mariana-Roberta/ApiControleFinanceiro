@@ -1,11 +1,10 @@
 
 <!--    Menu   -->
 <div class="menu-voltar">
-    <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+    <p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>&nbsp;&nbsp;<p-button label="Editar" [raised]="true" (click) = "editarLancamento()"></p-button>
 </div>
 <!--    Menu   -->
 
-<!--    Tudo Sobre Lançamento   -->
 <div class="tudo-sobre-lancamento" *ngIf="lancamento">
 
     <!--    Detalhes do Lançamento   -->
@@ -19,15 +18,5 @@
             <p><strong>Categoria:</strong> {{ lancamento.categoria }}</p>
         </p-panel>
     </div>
-    <!--    Detalhes do Lançamento   -->
-
-    <!--    Lançamento -->
-    <div class="info-lancamento">
-        <p-panel header="Lançamento">
-            <p-button label="Editar Lançamento" [raised]="true"></p-button>
-        </p-panel>
-    </div>
-    <!--    Lançamentos -->
 
 </div>
-<!--    Tudo Sobre Lançamento   -->

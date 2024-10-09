@@ -1,15 +1,21 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
+
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class LancamentoDTO {
      private Integer id;
     private String nome;
     private String descricao;
-    private String data;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate data;
     private Tipo tipo;
     private double valor;
     private Categoria categoria;
@@ -20,7 +26,7 @@ public class LancamentoDTO {
     public LancamentoDTO() {
     }
 
-    public LancamentoDTO(Integer id, String nome, String descricao, String data, Tipo tipo, double valor, Categoria categoria, Grupo grupo) {
+    public LancamentoDTO(Integer id, String nome, String descricao, LocalDate data, Tipo tipo, double valor, Categoria categoria, Grupo grupo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -55,11 +61,11 @@ public class LancamentoDTO {
         this.descricao = descricao;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
