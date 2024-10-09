@@ -2,3 +2,31 @@
     margin-top: 20px;
     margin-bottom: 30px;
 }
+.lancamentos-metas-container {
+    display: flex;          /* Ativa o layout flexbox */
+    justify-content: space-between; /* Espaco entre os elementos */
+}
+
+.info-lancamentos{
+    flex: 2;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.info-metas{
+    flex: 1;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.info-lancamentos,
+.info-metas {
+             /* Cada tabela ocupa o mesmo espaço */
+    margin-right: 10px;   /* Margem entre as tabelas (ajuste conforme necessário) */
+}
+
+
+
+.info-metas {
+    margin-right: 0;      /* Remove a margem à direita da segunda tabela */
+}

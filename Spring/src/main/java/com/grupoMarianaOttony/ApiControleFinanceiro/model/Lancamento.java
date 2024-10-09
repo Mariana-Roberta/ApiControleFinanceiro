@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "LANCAMENTO")
 public class Lancamento {
@@ -23,6 +25,7 @@ public class Lancamento {
     private String descricao; // Descrição do lançamento
 
     @Column(name = "DATA", nullable = false)
+    @DateTimeFormat( pattern = "dd/MM/yyyy")
     private LocalDate data; // Data do lançamento
 
     @Column(name = "TIPO", nullable = false)

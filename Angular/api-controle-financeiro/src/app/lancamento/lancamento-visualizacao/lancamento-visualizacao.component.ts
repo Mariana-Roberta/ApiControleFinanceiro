@@ -59,7 +59,7 @@ export class LancamentoVisualizacaoComponent implements OnInit {
 
     editarLancamento() {
         // Navega para a página de edição com o ID do grupo
-        this.router.navigate(['/lancamento/lancamento-edit', this.lancamento.id]);
+        this.router.navigate(['/lancamento/lancamento-edit/edit', this.lancamento.id]);
     }
 
     voltar() {

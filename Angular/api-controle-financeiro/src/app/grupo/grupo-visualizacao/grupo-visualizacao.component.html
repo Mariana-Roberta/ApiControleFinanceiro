@@ -1,4 +1,7 @@
-<div class="menu-voltar"><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button></div>
+<div class="menu-voltar"><p-button label="Voltar" [raised]="true" (click)="voltar()"></p-button>
+    &nbsp;&nbsp;<p-button label="Lista de Pessoas" [raised]="true" (click)="voltarHome()"></p-button>   
+    &nbsp;&nbsp;<p-button label="Editar Grupo" [raised]="true" (click)="editarGrupo()"></p-button>
+</div>
 
 <!--    Tudo Sobre Grupo   -->
 <div class="tudo-sobre-grupo" *ngIf="grupo">
@@ -11,26 +14,56 @@
             <p><strong>Saldo:</strong><span [ngStyle]="{'color': grupo.saldo <= 0 ? 'red' : 'green'}">{{grupo.saldo | currency: 'BRL':'symbol':'1.2-2'}}</span></p>
         </p-panel>
     </div>
-    
-    <p-button label="Editar Grupo" [raised]="true" (click)="editarGrupo()"></p-button>
 
-    <!--    Lançamentos -->
+    <!-- Lançamentos e Metas lado a lado -->
+<div class="lancamentos-metas-container">
     <div class="info-lancamentos">
         <p-panel header="Lançamentos">
-            <p-button label="Ver Lançamentos" [raised]="true" (click)="verLancamentos()"></p-button>
-            <p-button label="Novo Lançamento" [raised]="true" (click)="novoLancamento()"></p-button>
+            <p-table [value]="lancamentos" [tableStyle]="{ 'min-width': '100%' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-lancamento>
+                    <tr>
+                        <td>
+                            <span (click)="verLancamento(lancamento.id)" style="cursor: pointer; color: blue;">
+                                {{ lancamento.nome }}
+                            </span>
+                        </td>
+                        <td>{{ lancamento.categoria }}</td>
+                        <td [ngStyle]="{'color': lancamento.tipo === tipo.Despesa ? 'red' : 'green'}">
+                            {{ lancamento.valor | currency: 'BRL':'symbol':'1.2-2' }}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </p-panel>
     </div>
-    <!--    Lançamentos -->
 
-    <!--    Metas   -->
     <div class="info-metas">
         <p-panel header="Metas">
-            <p-button label="Ver Metas" [raised]="true" (click)="verMetas()"></p-button>
-            <p-button label="Nova Meta" [raised]="true" (click)="novaMeta()"></p-button>
+            <p-table [value]="metas" [tableStyle]="{ 'min-width': '100%' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-meta>
+                    <tr>
+                        <td>{{ meta.categoria }}</td>
+                        <td>{{ meta.valor | currency: 'BRL':'symbol':'1.2-2' }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </p-panel>
     </div>
-    <!--    Metas   -->
-
 </div>
-<!--    Tudo Sobre Grupo   -->
+<p-button label="Ver Lançamentos" [raised]="true" (click)="verLancamentos()"></p-button>
+<p-button label="Novo Lançamento" [raised]="true" (click)="novoLancamento()"></p-button>&nbsp;
+<p-button label="Ver Metas" [raised]="true" (click)="verMetas()"></p-button>
+<p-button label="Nova Meta" [raised]="true" (click)="novaMeta()"></p-button>

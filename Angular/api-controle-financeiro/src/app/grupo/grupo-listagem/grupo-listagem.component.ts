@@ -81,6 +81,9 @@ export class GrupoListagemComponent {
     this.router.navigate(['/lancamento/lancamento-listagem', grupo.id]);
   }
 
+  voltarHome(){
+    this.router.navigate(['']);
+  }
 
   voltar() {
     this.location.back(); // Volta para a página anterior no histórico

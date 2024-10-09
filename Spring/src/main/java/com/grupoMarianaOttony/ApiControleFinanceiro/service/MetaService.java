@@ -1,7 +1,6 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
-import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Tipo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.LancamentoException;
 import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.MetaException;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
@@ -45,12 +44,9 @@ public class MetaService {
 
 
     private void metaExceptionHandler(Meta meta){
-        Meta existingMeta = this.findByType(meta.getTipo());
-    if (existingMeta != null && !existingMeta.getId().equals(meta.getId())) {
-        throw new MetaException("Já existe uma meta cadastrada com o tipo " + meta.getTipo());
-    }
-
-
-        
+        Meta existingMeta = this.findByType(meta.getCategoria());
+        if (existingMeta != null && !existingMeta.getId().equals(meta.getId())) {
+        throw new MetaException("Já existe uma meta cadastrada com a Categoria " + meta.getCategoria());
+        }    
     }
 }

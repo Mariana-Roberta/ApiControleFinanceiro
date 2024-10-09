@@ -3,7 +3,6 @@ package com.grupoMarianaOttony.ApiControleFinanceiro.repository;
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.grupoMarianaOttony.ApiControleFinanceiro.model.Grupo;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import org.springframework.stereotype.Repository;
 

@@ -67,7 +67,7 @@ public class LancamentoController {
         return this.lancamentoService.findById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     public Lancamento atualizarLancamento(@PathVariable Integer id, @Valid @RequestBody LancamentoDTO lancamentoDTO) {
         // Verifica se o lançamento existe
         Lancamento lancamentoExistente = lancamentoService.findById(id);
@@ -75,8 +75,12 @@ public class LancamentoController {
         // Atualiza os dados do lançamento existente com os dados do DTO
         lancamentoExistente.setNome(lancamentoDTO.getNome());
         lancamentoExistente.setDescricao(lancamentoDTO.getDescricao());
+        lancamentoExistente.setData(lancamentoDTO.getData());
+        lancamentoExistente.setTipo(lancamentoDTO.getTipo());
+        lancamentoExistente.setCategoria(lancamentoDTO.getCategoria());
+        lancamentoExistente.setValor(lancamentoDTO.getValor());
 
-        return this.lancamentoService.save(lancamentoExistente);
+        return this.lancamentoService.update(lancamentoExistente);
     }
 
     @DeleteMapping("/{id}")

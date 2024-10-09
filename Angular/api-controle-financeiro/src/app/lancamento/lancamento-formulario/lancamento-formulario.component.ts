@@ -95,6 +95,15 @@ export class LancamentoFormularioComponent implements OnInit {
         this.addLancamento();
     }
 
+    formatarData() {
+        let data = this.lancamento.data.replace(/\D/g, '');
+        if (data.length > 4) {
+          data = data.replace(/(\d{3})(\d{3})(\d{1})/, '$1/$2/$3');
+        } else if (data.length > 2) {
+          data = data.replace(/(\d{3})(\d{1})/, '$1/$2');
+        }
+        this.lancamento.data = data;
+    }
 
     addLancamento() {
         if (this.categoriaSelecionada) {

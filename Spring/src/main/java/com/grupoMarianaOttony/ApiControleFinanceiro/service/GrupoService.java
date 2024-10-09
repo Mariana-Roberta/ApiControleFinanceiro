@@ -21,9 +21,6 @@ public class GrupoService {
     private GrupoRepository grupoRepository;
 
     @Autowired
-    private PessoaService pessoaService;
-
-    @Autowired
     private LancamentoRepository lancamentoRepository;
 
     public List<Grupo> findAll() { return grupoRepository.findAll(); }

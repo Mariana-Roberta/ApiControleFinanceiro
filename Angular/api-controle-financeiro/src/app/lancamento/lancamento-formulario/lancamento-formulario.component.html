@@ -13,7 +13,7 @@
         <input id="descricao" pInputText [(ngModel)]="lancamento.descricao" name="descricao" >
 
         <label for="data">Data:</label>
-        <input id="data" pInputText [(ngModel)]="lancamento.data" name="data">
+        <input id="data" pInputText [(ngModel)]="lancamento.data" name="data" (input)= "formatarData()" maxlength="10">
 
         <label for="tipo">Tipo:</label>
         <select [(ngModel)]="tipoSelecionada" name="tipo" style="font-size: 16px; padding: 8px; ">
