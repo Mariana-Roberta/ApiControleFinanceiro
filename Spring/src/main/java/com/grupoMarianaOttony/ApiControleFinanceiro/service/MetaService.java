@@ -1,6 +1,9 @@
 package com.grupoMarianaOttony.ApiControleFinanceiro.service;
 
 import com.grupoMarianaOttony.ApiControleFinanceiro.enums.Categoria;
+import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.LancamentoException;
+import com.grupoMarianaOttony.ApiControleFinanceiro.exceptions.MetaException;
+import com.grupoMarianaOttony.ApiControleFinanceiro.model.Lancamento;
 import com.grupoMarianaOttony.ApiControleFinanceiro.model.Meta;
 import com.grupoMarianaOttony.ApiControleFinanceiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,7 @@ public class MetaService {
     }
 
     public Meta save(Meta meta) {
+        metaExceptionHandler(meta);
         return metaRepository.save(meta);
     }
 
@@ -35,5 +39,14 @@ public class MetaService {
 
     public Meta findByCategoria(Categoria categoria) {
         return metaRepository.findByCategoria(categoria).stream().findFirst().orElse(null);
+    }
+
+
+
+    private void metaExceptionHandler(Meta meta){
+        Meta existingMeta = this.findByType(meta.getCategoria());
+        if (existingMeta != null && !existingMeta.getId().equals(meta.getId())) {
+        throw new MetaException("Já existe uma meta cadastrada com a Categoria " + meta.getCategoria());
+        }    
     }
 }
