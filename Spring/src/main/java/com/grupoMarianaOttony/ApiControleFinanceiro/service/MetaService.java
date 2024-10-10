@@ -44,7 +44,7 @@ public class MetaService {
 
 
     private void metaExceptionHandler(Meta meta){
-        Meta existingMeta = this.findByType(meta.getCategoria());
+        Meta existingMeta = this.findByCategoria(meta.getCategoria());
         if (existingMeta != null && !existingMeta.getId().equals(meta.getId())) {
         throw new MetaException("Já existe uma meta cadastrada com a Categoria " + meta.getCategoria());
         }    
